@@ -1,0 +1,11 @@
+{
+    "include": [
+        "src/**/*"
+    ],
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "es2015",
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true
+    }
+}
