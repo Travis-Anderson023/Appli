@@ -13,7 +13,7 @@ const applicationSchema = new Schema({
     type: String,
     required: 'You need to add a date!'
   },
-  contant_name: {
+  contact_name: {
     type: String,
     required: 'You need to indicate a contact name!'
   },
@@ -26,7 +26,7 @@ const applicationSchema = new Schema({
     required: 'You need to indicate a contact email!',
     trim: true,
   },
-  contact_webstie: {
+  contact_website: {
     type: String,
     trim: true,
   },
