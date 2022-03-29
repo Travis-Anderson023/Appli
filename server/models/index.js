@@ -1,4 +1,5 @@
 const User = require('./User');
-const Thought = require('./Thought');
+const Application = require('./Application');
+const CoverLetter = require('./CoverLetter');
 
-module.exports = { User, Thought };
+module.exports = { User, Application, CoverLetter };
