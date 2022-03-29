@@ -9,6 +9,7 @@ export const App = () => {
       width: '100vw',
       display: 'flex',
       flexDirection: 'column',
+      overflow: 'hidden',
 
     }
   }

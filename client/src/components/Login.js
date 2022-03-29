@@ -4,14 +4,16 @@ import { reStyles } from "../reusableStyles";
 export const Login = () => {
     return (
         <Box sx={{
-            flex: 1, minWidth: '300px', bgcolor: 'secondary.main', ...reStyles.flexContainer, height: '100%', alignItems: 'center'
+            ...reStyles.flexContainer, bgcolor: 'primary.main', width: '100%', alignItems: 'center',
         }}>
             < Paper
                 elevation={20}
                 sx={{
-                    height: '400px',
-                    transform: 'translate(-25%)',
                     padding: '20px',
+                    minWidth: '400px',
+                    width: '70%',
+                    ml: '30px',
+                    mr: '30px',
                 }}>
                 {/* h1 */}
                 < Typography sx={{ fontSize: '3rem' }} >
@@ -45,7 +47,7 @@ export const Login = () => {
                     type="submit"
                     fullWidth
                     variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
+                    sx={{ mt: 3, mb: 2, bgcolor: 'secondary.main' }}
                 >
                     Sign In
                 </Button>
