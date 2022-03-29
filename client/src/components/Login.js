@@ -10,7 +10,7 @@ export const Login = () => {
                 elevation={20}
                 sx={{
                     padding: '20px',
-                    minWidth: '400px',
+                    minWidth: '300px',
                     width: '70%',
                     ml: '30px',
                     mr: '30px',
