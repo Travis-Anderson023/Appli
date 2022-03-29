@@ -1,11 +1,16 @@
-import { Route, Router, Routes } from '@react/router';
-import { Home } from './pages/Home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Account, CoverLetters, Home, Resumes, Signup } from './pages';
+
 export const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/resumes" element={<Resumes />} />
+        <Route path="/cover-letters" element={<CoverLetters />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }

@@ -1,11 +1,10 @@
+import { Box } from '@mui/material';
 
 export const Home = () => {
 
     return (
         <Box>
-            <div>
-                test
-            </div>
+            Home
         </Box>
     )
 }
