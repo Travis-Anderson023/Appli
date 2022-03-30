@@ -1,7 +1,7 @@
-import { Box, Button, Checkbox, FormControlLabel, Paper, TextField, Typography } from "@mui/material";
+import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { reStyles } from "../reusableStyles";
 
-export const Login = (props) => {
+export const SignUp = (props) => {
     return (
         <Box sx={{
             ...reStyles.flexContainer, bgcolor: 'primary.main', width: '100%', alignItems: 'center',
@@ -16,8 +16,17 @@ export const Login = (props) => {
                     mr: '30px',
                 }}>
                 < Typography sx={{ fontSize: '3rem' }} >
-                    Login
+                    Signup
                 </Typography >
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="username"
+                    label="Username"
+                    type="username"
+                    id="Username"
+                />
                 <TextField
                     margin="normal"
                     required
@@ -25,7 +34,6 @@ export const Login = (props) => {
                     id="email"
                     label="Email Address"
                     name="email"
-                    autoComplete="email"
                     type="email"
                 />
                 <TextField
@@ -37,15 +45,18 @@ export const Login = (props) => {
                     type="password"
                     id="password"
                 />
-                <Box sx={{ position: 'relative' }}>
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
-                    <Button style={{ position: 'absolute', padding: 0, right: 0 }} color='inherit'>
-                        <Typography sx={{ fontSize: '16px', textTransform: 'none', m: '9px', mr: '0px' }} onClick={() => { props.setIsLoginScreen(!props.isLoginScreen) }}>Need an account?</Typography>
-                    </Button>
-                </Box>
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="confirm-password"
+                    label="Confirm Password"
+                    type="password"
+                    id="confirm-password"
+                />
+                <Button style={{ padding: 0 }} color='inherit'>
+                    <Typography sx={{ fontSize: '16px', textTransform: 'none', m: '9px', mr: '0px' }} onClick={() => { props.setIsLoginScreen(!props.isLoginScreen) }}>Have an account?</Typography>
+                </Button>
                 <Button
                     type="submit"
                     fullWidth
