@@ -1,10 +1,7 @@
 import { Box, CardMedia } from '@mui/material';
 import { useState } from 'react';
-// @ts-ignore
 import homeSlope from '../assets/home/homeSlope.png';
-// @ts-ignore
 import logoIcon from '../assets/logo-icon.png';
-// @ts-ignore
 import logoTextFB from '../assets/logo-textFB.png';
 import { Login } from '../components/Login';
 import { SignUp } from '../components/SignUp';
