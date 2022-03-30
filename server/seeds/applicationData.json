@@ -1,0 +1,29 @@
+[
+    {
+        "company": "Google",
+        "date_applied": "March 29, 2022",
+        "contact_name": "Mary",
+        "contact_phone": "123-456-7890",
+        "contact_email": "google@email.com",
+        "contact_website": "google.ca",
+        "response": true
+    },
+    {
+        "company": "Microsoft",
+        "date_applied": "March 29, 2022",
+        "contact_name": "Tim",
+        "contact_phone": "123-456-7890",
+        "contact_email": "microsoft@email.com",
+        "contact_website": "microsoft.ca",
+        "response": false
+    },
+    {
+        "company": "Amazon",
+        "date_applied": "March 29, 2022",
+        "contact_name": "Jane",
+        "contact_phone": "123-456-7890",
+        "contact_email": "amazon@email.com",
+        "contact_website": "amazon.ca",
+        "response": true
+    }
+]
