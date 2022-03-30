@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-{}
-=======
+
 {
-  "name": "Appli",
+  "name": "appli",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -20,4 +18,3 @@
     "concurrently": "^5.1.0"
   }
 }
->>>>>>> develop
