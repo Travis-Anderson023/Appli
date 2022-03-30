@@ -17,6 +17,7 @@ export const App = () => {
   const [appFilter, setAppFilter] = useState('');
 
   return (
+<<<<<<< HEAD
     <Box sx={styles.wrapper}>
       {window.location.pathname !== '/' ? <Nav setAppFilter={setAppFilter} /> : undefined}
       <BrowserRouter>
@@ -27,5 +28,18 @@ export const App = () => {
         </Routes>
       </BrowserRouter>
     </Box>
+=======
+      <Box sx={styles.wrapper}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/resumes" element={<Resumes />} />
+            <Route path="/cover-letters" element={<CoverLetters />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </BrowserRouter>
+      </Box>
+>>>>>>> develop
   );
 }
