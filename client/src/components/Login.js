@@ -26,7 +26,7 @@ export const Login = (props) => {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    autoFocus
+                    type="email"
                 />
                 <TextField
                     margin="normal"
@@ -36,14 +36,13 @@ export const Login = (props) => {
                     label="Password"
                     type="password"
                     id="password"
-                    autoComplete="current-password"
                 />
                 <Box sx={{ position: 'relative' }}>
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"
                     />
-                    <Button style={{ position: 'absolute', padding: 0, right: 0 }} color='inherit' href=''>
+                    <Button style={{ position: 'absolute', padding: 0, right: 0 }} color='inherit'>
                         <Typography sx={{ fontSize: '16px', textTransform: 'none', m: '9px', mr: '0px' }} onClick={() => { props.setIsLoginScreen(!props.isLoginScreen) }}>Need an account?</Typography>
                     </Button>
                 </Box>
