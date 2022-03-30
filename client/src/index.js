@@ -26,14 +26,13 @@ const theme = createTheme({
   spacing: [0, 4, 8, 16, 24, 32, 40, 48, 56, 64],
   typography: {
     h1: {
-      fontFamily: "Chakra Petch, Balsamiq Sans, cursive",
+      fontFamily: "Oxygen, Balsamiq Sans, cursive",
     },
     body1: {
-      fontFamily: "Chakra Petch, cursive",
+      fontFamily: "Oxygen, cursive",
     },
   },
 },
-
 );
 
 ReactDOM.render(
