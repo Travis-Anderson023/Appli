@@ -1,7 +1,7 @@
 import { Box, Button, Checkbox, FormControlLabel, Paper, TextField, Typography } from "@mui/material";
 import { reStyles } from "../reusableStyles";
 
-export const Login = () => {
+export const Login = (props) => {
     return (
         <Box sx={{
             ...reStyles.flexContainer, bgcolor: 'primary.main', width: '100%', alignItems: 'center',
@@ -15,7 +15,6 @@ export const Login = () => {
                     ml: '30px',
                     mr: '30px',
                 }}>
-                {/* h1 */}
                 < Typography sx={{ fontSize: '3rem' }} >
                     Login
                 </Typography >
@@ -39,15 +38,21 @@ export const Login = () => {
                     id="password"
                     autoComplete="current-password"
                 />
-                <FormControlLabel
-                    control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
-                />
+                <Box sx={{ position: 'relative' }}>
+                    <FormControlLabel
+                        control={<Checkbox value="remember" color="primary" />}
+                        label="Remember me"
+                    />
+                    <Button style={{ position: 'absolute', right: '30px' }} color='inherit' href=''>
+                        <Typography sx={{ fontSize: '16px', textTransform: 'none' }} onClick={() => { props.setIsLoginScreen(!props.isLoginScreen) }}>New? Create an account!</Typography>
+                    </Button>
+                </Box>
                 <Button
                     type="submit"
                     fullWidth
                     variant="contained"
-                    sx={{ mt: 3, mb: 2, bgcolor: 'secondary.main' }}
+                    color="secondary"
+                    sx={{ mt: 3, mb: 2 }}
                 >
                     Sign In
                 </Button>

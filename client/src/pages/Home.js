@@ -1,4 +1,5 @@
 import { Box, CardMedia } from '@mui/material';
+import { useState } from 'react';
 // @ts-ignore
 import homeSlope from '../assets/home/homeSlope.png';
 // @ts-ignore
@@ -9,6 +10,7 @@ import { Login } from '../components/Login';
 import { reStyles } from '../reusableStyles';
 
 export const Home = () => {
+    const [isLoginScreen, setIsLoginScreen] = useState(true);
 
     return (
         <Box sx={{ ...reStyles.background, ...reStyles.flexContainer, flexDirection: ['column', 'column', 'column', 'row'] }}>
@@ -18,7 +20,7 @@ export const Home = () => {
             </Box>
             <Box sx={{ maxHeight: '100%', overflow: 'hidden', ...reStyles.flexContainer, alignItems: 'center', flexDirection: ['column', 'column', 'column', 'row'] }}>
                 <CardMedia component='img' src={homeSlope} alt='slope asset' sx={{ height: '101%', display: ['none', 'none', 'none', 'block'], width: 'auto' }} />
-                <Login />
+                <Login setIsLoginScreen={setIsLoginScreen} isLoginScreen={isLoginScreen} />
             </Box>
         </Box >
     )
