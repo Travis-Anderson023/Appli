@@ -1,31 +1,33 @@
-//Signup
-export const createUser = (userData) => {
-    return fetch('/api/users', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-    });
-};
+//**This is here just in case later if we are implementing donations/word tune and require this. 
 
-//Login 
-export const loginUser = (userData) => {
-    return fetch('/api/users/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-    });
-};
+// //Signup
+// export const createUser = (userData) => {
+//     return fetch('/api/users', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(userData),
+//     });
+// };
 
-// route to get logged in user's info (needs the token)
-export const getMe = (token) => {
-    return fetch('/api/users/me', {
-        headers: {
-            'Content-Type': 'application/json',
-            authorization: `Bearer ${token}`,
-        },
-    });
-};
+// //Login 
+// export const loginUser = (userData) => {
+//     return fetch('/api/users/login', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(userData),
+//     });
+// };
+
+// // route to get logged in user's info (needs the token)
+// export const getMe = (token) => {
+//     return fetch('/api/users/me', {
+//         headers: {
+//             'Content-Type': 'application/json',
+//             authorization: `Bearer ${token}`,
+//         },
+//     });
+// };
