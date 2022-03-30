@@ -57,10 +57,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addCoverLetter: async (parent, { coverLetterText }, context) => {
+    addCoverLetter: async (parent, { text }, context) => {
       if (context.user) {
         const coverLetter = await CoverLetter.create({
-          coverLetterText,
+          text,
         });
 
         await Application.findOneAndUpdate(
@@ -72,39 +72,20 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addApplication: async (parent, { thoughtId, commentText }, context) => {
+    addApplication: async (parent, args, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-            $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
+        const application = await Application.create(args);
+
+        await User.findOneAndUpdate(
+          {_id: context.user._id},
+          { $addToSet: { applications: application._id}}
+        )
+        
+        return application
+
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    // removeThought: async (parent, { thoughtId }, context) => {
-    //   if (context.user) {
-    //     const thought = await Thought.findOneAndDelete({
-    //       _id: thoughtId,
-    //       thoughtAuthor: context.user.username,
-    //     });
-
-    //     await User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $pull: { thoughts: thought._id } }
-    //     );
-
-    //     return thought;
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
   },
 };
 
