@@ -1,9 +1,10 @@
 import { Box } from "@mui/material"
 
-export const CoverLetters = () => {
+export const Applications = () => {
+
     return (
         <Box>
-            Cover Letters
+            Applications
         </Box>
     )
 }

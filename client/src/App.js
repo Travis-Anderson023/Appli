@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Account, CoverLetters, Home, Resumes, Signup } from './pages';
+import { Nav } from './components/misc/Nav';
+import { Account, Applications, Home } from './pages';
 
 export const App = () => {
   const styles = {
@@ -15,13 +16,12 @@ export const App = () => {
 
   return (
     <Box sx={styles.wrapper}>
+      {window.location.pathname !== '/' ? <Nav /> : undefined}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/resumes" element={<Resumes />} />
-          <Route path="/cover-letters" element={<CoverLetters />} />
+          <Route path="/applications" element={<Applications />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </Box>
