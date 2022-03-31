@@ -1,6 +1,8 @@
-import { Box } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
+import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Account, CoverLetters, Home, Resumes, Signup } from './pages';
+import { Nav } from './components/misc/Nav';
+import { Account, Applications, Home } from './pages';
 
 export const App = () => {
   const styles = {
@@ -12,18 +14,24 @@ export const App = () => {
 
     }
   }
+  const [appFilter, setAppFilter] = useState('');
+  const [page, setPage] = useState(1);
+  const isSmOrUp = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
 
   return (
-    <Box sx={styles.wrapper}>
-      <BrowserRouter>
-        <Routes>
+    <BrowserRouter >
+      <Box sx={styles.wrapper}>
+
+        {window.location.pathname !== '/' && isSmOrUp ? <Nav setAppFilter={setAppFilter} isSmOrUp={isSmOrUp} /> : undefined}
+
+        <Routes >
           <Route path="/" element={<Home />} />
-          <Route path="/resumes" element={<Resumes />} />
-          <Route path="/cover-letters" element={<CoverLetters />} />
+          <Route path="/applications" element={<Applications appFilter={appFilter} />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/signup" element={<Signup />} />
         </Routes>
-      </BrowserRouter>
-    </Box>
+        {window.location.pathname !== '/' && !isSmOrUp ? <Nav setAppFilter={setAppFilter} isSmOrUp={isSmOrUp} page={page} setPage={setPage} /> : undefined}
+      </Box>
+    </BrowserRouter>
   );
 }

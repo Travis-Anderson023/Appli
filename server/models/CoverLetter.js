@@ -10,9 +10,24 @@ const coverletterSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
-  }
-});
+    get: (timestamp) => dateFormat(timestamp)
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp)
+    }
+},
+{
+  hooks: {
+    beforeUpdate: async (updatedCoverLetterData) => {
+      updatedCoverLetter.updatedAt = Date.now;
+      return updatedCoverLetterData;
+    },
+  },
+},
+
+);
 
 const CoverLetter = model('CoverLetter', coverletterSchema);
 

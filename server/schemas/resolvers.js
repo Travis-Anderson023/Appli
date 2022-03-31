@@ -16,12 +16,8 @@ const resolvers = {
         populate: 'coverletter'
       });
     },
-    applications: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Application.find(params).sort({ createdAt: -1 });
-    },
     application: async (parent, { applicationId }) => {
-      return Application.findOne({ _id: applicationId });
+      return Application.findOne({ _id: applicationId }).populate('coverletter');
     },
     coverletter: async (parent, { coverletterId }) => {
       return CoverLetter.findOne({ _id: coverletterId });
@@ -42,6 +38,7 @@ const resolvers = {
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
+      console.log(user, 'made it here!')
 
       if (!user) {
         throw new AuthenticationError('No user found with this email address');
@@ -85,6 +82,34 @@ const resolvers = {
 
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+    updateCoverLetter: async (parent, { coverletterId, text }, context) => {
+      // if (context.user) {
+        const coverLetter = await CoverLetter.findOneAndUpdate(
+          {_id: coverletterId},
+          { $set: {text:text}},
+          { runValidators: true, new: true }
+        );
+
+        console.log(text);
+        console.log(coverLetter);
+
+        return coverLetter;
+      // }
+      // throw new AuthenticationError('You need to be logged in!');
+    },
+    updateApplication: async (parent, args, context) => {
+      // if (context.user) {
+        const application = await Application.findOneAndUpdate(
+          {_id: args.applicationId},
+          {$set: args},
+          { runValidators: true, new: true }
+        );
+        
+        return application
+
+      // }
+      // throw new AuthenticationError('You need to be logged in!');
     },
   },
 };
