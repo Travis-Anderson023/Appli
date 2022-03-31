@@ -1,3 +1,8 @@
+import {
+  ApolloClient, ApolloProvider,
+  createHttpLink, InMemoryCache
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { createTheme, ThemeProvider } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -5,13 +10,6 @@ import { App } from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -49,7 +47,7 @@ const theme = createTheme({
       primary: '#212121',
     },
     background: {
-      default: '#dfe3ee',
+      default: '#fff',
       paper: '#dfe3ee',
     }
   },
@@ -68,9 +66,9 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

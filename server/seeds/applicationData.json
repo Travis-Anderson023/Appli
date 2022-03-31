@@ -6,7 +6,7 @@
         "contact_phone": "123-456-7890",
         "contact_email": "google@email.com",
         "contact_website": "google.ca",
-        "response": true
+        "response": "March 20, 2022"
     },
     {
         "company": "Microsoft",
@@ -15,7 +15,7 @@
         "contact_phone": "123-456-7890",
         "contact_email": "microsoft@email.com",
         "contact_website": "microsoft.ca",
-        "response": false
+        "response": "March 12, 2022"
     },
     {
         "company": "Amazon",
@@ -24,6 +24,6 @@
         "contact_phone": "123-456-7890",
         "contact_email": "amazon@email.com",
         "contact_website": "amazon.ca",
-        "response": true
+        "response": "March 5, 2022"
     }
 ]

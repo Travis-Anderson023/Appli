@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-import { Box, Button, Paper, TextField, Typography, Dialog } from "@mui/material";
+import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { reStyles } from "../reusableStyles";
 
 export const SignUp = (props) => {
@@ -119,11 +119,11 @@ export const SignUp = (props) => {
                 >
                     Sign In
                 </Button>
-                <SimpleDialog
+                {/* <SimpleDialog
                     selectedValue={selectedValue}
                     open={open}
                     onClose={handleClose}
-                />
+                /> */}
             </Paper >
         </Box >
     )
