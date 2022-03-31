@@ -17,7 +17,7 @@ const typeDefs = gql`
     contact_phone: String
     contact_email: String
     contact_website: String
-    respone: Boolean
+    response: String
     createdAt: String
     coverletter: CoverLetter
   }
@@ -26,6 +26,7 @@ const typeDefs = gql`
     _id: ID
     text: String
     createdAt: String
+    updatedAt: String
   }
 
   type Auth {
@@ -36,7 +37,6 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    applications(username: String!): [Application]
     application(applicationId: ID!): Application
     coverletter(coverletterId: ID!): CoverLetter
     me: User
@@ -47,6 +47,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addApplication(company: String!, date_applied: String!, contact_name: String!, contact_phone: String, contact_email: String!, contact_website: String): Application
     addCoverLetter(text: String!): CoverLetter
+    updateCoverLetter(coverletterId: ID!, text:String!): CoverLetter
+    updateApplication(applicationId: ID!, company: String, date_applied: String, contact_name: String, contact_phone: String, contact_email: String, contact_website: String): Application
   }
 `;
 

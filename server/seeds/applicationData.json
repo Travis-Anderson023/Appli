@@ -6,11 +6,7 @@
         "contact_phone": "123-456-7890",
         "contact_email": "google@email.com",
         "contact_website": "google.ca",
-        "response": true,
-        "coverletter": {
-            "createdAt": "March 29",
-            "text": "coverletter text"
-        }
+        "response": "March 20, 2022"
     },
     {
         "company": "Microsoft",
@@ -19,11 +15,7 @@
         "contact_phone": "123-456-7890",
         "contact_email": "microsoft@email.com",
         "contact_website": "microsoft.ca",
-        "response": false,
-        "coverletter": {
-            "createdAt": "March 29",
-            "text": "coverletter text"
-        }
+        "response": "March 12, 2022"
     },
     {
         "company": "Amazon",
@@ -32,10 +24,6 @@
         "contact_phone": "123-456-7890",
         "contact_email": "amazon@email.com",
         "contact_website": "amazon.ca",
-        "response": true,
-        "coverletter": {
-            "createdAt": "March 29",
-            "text": "coverletter text"
-        }
+        "response": "March 5, 2022"
     }
 ]

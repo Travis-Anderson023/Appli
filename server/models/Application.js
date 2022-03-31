@@ -10,7 +10,8 @@ const applicationSchema = new Schema({
     trim: true,
   },
   date_applied: {
-    type: String,
+    type: Date,
+    get: (timestamp) => dateFormat(timestamp),
     required: 'You need to add a date!'
   },
   contact_name: {
@@ -31,8 +32,9 @@ const applicationSchema = new Schema({
     trim: true,
   },
   response: {
-    type: Boolean,
-    default: false
+    type: Date,
+    get: (timestamp) => dateFormat(timestamp),
+    default: null
   },
   createdAt: {
     type: Date,
@@ -42,7 +44,7 @@ const applicationSchema = new Schema({
   coverletter: 
     {
       type: Schema.Types.ObjectId,
-      ref: 'CoverLetter',
+      ref: 'CoverLetter'
     },
 });
 
