@@ -3,8 +3,8 @@ import { useState } from 'react';
 import homeSlope from '../assets/home/homeSlope.png';
 import logoIcon from '../assets/logo-icon.png';
 import logoTextFB from '../assets/logo-textFB.png';
-import { Login } from '../components/Login';
-import { SignUp } from '../components/SignUp';
+import { Login } from '../components/account/Login';
+import { SignUp } from '../components/account/SignUp';
 import { reStyles } from '../reusableStyles';
 
 export const Home = () => {

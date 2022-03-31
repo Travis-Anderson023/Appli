@@ -1,5 +1,5 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
-import { reStyles } from "../reusableStyles";
+import { reStyles } from "../../reusableStyles";
 
 export const SignUp = (props) => {
     return (
