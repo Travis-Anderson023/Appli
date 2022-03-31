@@ -9,7 +9,7 @@ export const Applications = () => {
     const companyArray = [
         {
             "company": "Google",
-            "date_applied": "March 29",
+            "date_applied": `March 29 2022`,
             "contact_name": "Mary",
             "contact_phone": "123-456-7890",
             "contact_email": "google@email.com",
