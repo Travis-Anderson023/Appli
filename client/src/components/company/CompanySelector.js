@@ -4,7 +4,7 @@ import { Avatar, Box, Button, ListItem, ListItemAvatar, Typography } from "@mui/
 
 export const CompanySelector = (props) => {
     return (
-        <ListItem sx={{ display: 'flex' }} fullWidth onClick={() => console.log(props.company)}>
+        <ListItem sx={{ display: 'flex' }} onClick={() => console.log(props.company)}>
             <Button color='inherit' variant='contained'
                 sx={{ borderRadius: '10px 0 0 10px', alignItems: 'flex-start', width: '100%', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex' }}>

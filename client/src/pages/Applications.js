@@ -1,6 +1,7 @@
 import { Box, Divider, List } from "@mui/material";
 import { useState } from "react";
 import { CompanySelector } from "../components/company/CompanySelector";
+import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
 import { reStyles } from "../reusableStyles";
 
 export const Applications = () => {
@@ -13,7 +14,11 @@ export const Applications = () => {
             "contact_phone": "123-456-7890",
             "contact_email": "google@email.com",
             "contact_website": "google.ca",
-            "response": "March 30"
+            "response": "March 30",
+            "coverletter": {
+                "createdAt": "March 29",
+                "text": "coverletter text"
+            }
         },
         {
             "company": "Microsoft",
@@ -22,7 +27,11 @@ export const Applications = () => {
             "contact_phone": "123-456-7890",
             "contact_email": "microsoft@email.com",
             "contact_website": "microsoft.ca",
-            "response": null
+            "response": null,
+            "coverletter": {
+                "createdAt": "March 29",
+                "text": "coverletter text"
+            }
         },
         {
             "company": "Amazon",
@@ -31,7 +40,11 @@ export const Applications = () => {
             "contact_phone": "123-456-7890",
             "contact_email": "amazon@email.com",
             "contact_website": "amazon.ca",
-            "response": "March 31"
+            "response": "March 31",
+            "coverletter": {
+                "createdAt": "March 29",
+                "text": "coverletter text"
+            }
         }
     ]
 
@@ -46,7 +59,7 @@ export const Applications = () => {
                 )}
             </List>
             <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} />
-            <p>Applications</p>
+            <DisplayCompanyData company={companyArray[0]} />
         </Box>
     )
 }
