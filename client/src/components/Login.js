@@ -31,6 +31,7 @@ export const Login = (props) => {
             Auth.login(data.login.token);
         } catch (e) {
             console.error(e);
+            alert('Invalid Credentials! \n Check your email or password!')
         }
         // clear form values
         setFormState({
