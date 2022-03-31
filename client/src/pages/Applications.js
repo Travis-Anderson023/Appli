@@ -29,12 +29,12 @@ export const Applications = () => {
             "response": null,
             "coverletter": {
                 "createdAt": "March 29",
-                "text": "coverletter text"
+                "text": "coverlettder text"
             }
         },
         {
             "company": "Amazon",
-            "date_applied": "March 29",
+            "date_applied": "March 7",
             "contact_name": "Jane",
             "contact_phone": "123-456-7890",
             "contact_email": "amazon@email.com",
@@ -42,7 +42,7 @@ export const Applications = () => {
             "response": "March 31",
             "coverletter": {
                 "createdAt": "March 29",
-                "text": "coverletter text"
+                "text": "coverleddtter text"
             }
         }
     ]

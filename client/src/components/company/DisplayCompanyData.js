@@ -4,10 +4,31 @@ import { useEffect, useState } from "react";
 import { reStyles } from "../../reusableStyles";
 export const DisplayCompanyData = (props) => {
     const { company, date_applied, contact_name, contact_phone, contact_email, contact_website, response, coverletter } = props.company;
-    const [date, setDate] = useState(format(new Date(date_applied), "yyyy-MM-dd"))
+
+    const [formState, setFormState] = useState({
+        company: company,
+        date_applied: format(new Date(date_applied), "yyyy-MM-dd"),
+        contact_name: contact_name,
+        contact_phone: contact_phone,
+        contact_email: contact_email,
+        contact_website: contact_website,
+        response: format(new Date(response), "yyyy-MM-dd"),
+        coverletterText: coverletter.text
+    })
+
     useEffect(() => {
-        setDate(format(new Date(date_applied), "yyyy-MM-dd"))
-    }, [date_applied])
+        setFormState(prevState => ({
+            company: company,
+            date_applied: format(new Date(date_applied), "yyyy-MM-dd"),
+            contact_name: contact_name,
+            contact_phone: contact_phone,
+            contact_email: contact_email,
+            contact_website: contact_website,
+            response: format(new Date(response), "yyyy-MM-dd"),
+            coverletterText: coverletter.text
+        }));
+    }, [props.company]);
+
     const style = {
         formItem: {
             margin: '10px',
@@ -42,7 +63,8 @@ export const DisplayCompanyData = (props) => {
                     id="Company-name"
                     label="Company Name"
                     multiline
-                    value={company}
+                    value={formState.company}
+                    onChange={(e) => setFormState(e.target.value)}
                     sx={{ ...style.formItem, ml: [undefined, undefined, undefined, '0'] }}
 
                 />
@@ -52,8 +74,8 @@ export const DisplayCompanyData = (props) => {
                     name="date-applied"
                     multiline
                     label="Date Applied"
-                    value={date}
-                    onChange={(e) => { setDate(e.target.value) }}
+                    value={formState.date_applied}
+                    onChange={(e) => { setFormState(e.target.value) }}
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
                 />
             </Box>
@@ -63,14 +85,16 @@ export const DisplayCompanyData = (props) => {
                     id="contact-name"
                     label="Contact Name"
                     multiline
-                    defaultValue={contact_name}
+                    value={formState.contact_name}
+                    onChange={(e) => { setFormState(e.target.value) }}
                     sx={{ ...style.formItem, ml: [undefined, undefined, undefined, '0'] }}
                 />
                 <TextField
                     id="contact-phone"
                     label="Contact Phone"
                     multiline
-                    defaultValue={contact_phone}
+                    value={formState.contact_phone}
+                    onChange={(e) => { setFormState(e.target.value) }}
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
                 />
             </Box>
@@ -79,14 +103,16 @@ export const DisplayCompanyData = (props) => {
                     id="contact-email"
                     label="Contact Email"
                     multiline
-                    defaultValue={contact_email}
+                    value={formState.contact_email}
+                    onChange={(e) => { setFormState(e.target.value) }}
                     sx={{ ...style.formItem, ml: [undefined, undefined, undefined, '0'] }}
                 />
                 <TextField
                     id="contact-website"
                     label="Contact Website"
                     multiline
-                    defaultValue={contact_website}
+                    value={formState.contact_website}
+                    onChange={(e) => { setFormState(e.target.value) }}
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
                 />
             </Box>
@@ -94,7 +120,8 @@ export const DisplayCompanyData = (props) => {
                 id="response"
                 label="Response"
                 multiline
-                defaultValue={response}
+                value={formState.response}
+                onChange={(e) => { setFormState(e.target.value) }}
                 sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
             />
             <Typography sx={{ ...style.formTypography }} variant='h4'>Cover Letter</Typography>
@@ -103,7 +130,8 @@ export const DisplayCompanyData = (props) => {
                 label="Cover Letter"
                 multiline
                 rows={8}
-                defaultValue={coverletter.text}
+                value={formState.coverletterText}
+                onChange={(e) => { setFormState(e.target.value) }}
                 sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
             />
             <Button
@@ -111,7 +139,7 @@ export const DisplayCompanyData = (props) => {
                 variant="contained"
                 color="primary"
                 sx={{ mt: 3, mb: 2, ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
-                onClick={() => console.log(company)}
+                onClick={() => console.log(formState.coverletter)}
             >
                 Submit Changes
             </Button>
