@@ -66,6 +66,7 @@ export const DisplayCompanyData = (props) => {
                     value={formState.company}
                     onChange={(e) => setFormState(e.target.value)}
                     sx={{ ...style.formItem, ml: [undefined, undefined, undefined, '0'] }}
+                    InputLabelProps={{ shrink: true }}
 
                 />
                 <TextField
@@ -77,6 +78,7 @@ export const DisplayCompanyData = (props) => {
                     value={formState.date_applied}
                     onChange={(e) => { setFormState(e.target.value) }}
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
+                    InputLabelProps={{ shrink: true }}
                 />
             </Box>
             <Typography sx={{ ...style.formTypography }} variant='h4'>Contact Information</Typography>
@@ -88,6 +90,7 @@ export const DisplayCompanyData = (props) => {
                     value={formState.contact_name}
                     onChange={(e) => { setFormState(e.target.value) }}
                     sx={{ ...style.formItem, ml: [undefined, undefined, undefined, '0'] }}
+                    InputLabelProps={{ shrink: true }}
                 />
                 <TextField
                     id="contact-phone"
@@ -96,6 +99,7 @@ export const DisplayCompanyData = (props) => {
                     value={formState.contact_phone}
                     onChange={(e) => { setFormState(e.target.value) }}
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
+                    InputLabelProps={{ shrink: true }}
                 />
             </Box>
             <Box sx={{ ...style.formItem, ...style.formBox }}>
@@ -106,6 +110,7 @@ export const DisplayCompanyData = (props) => {
                     value={formState.contact_email}
                     onChange={(e) => { setFormState(e.target.value) }}
                     sx={{ ...style.formItem, ml: [undefined, undefined, undefined, '0'] }}
+                    InputLabelProps={{ shrink: true }}
                 />
                 <TextField
                     id="contact-website"
@@ -114,6 +119,7 @@ export const DisplayCompanyData = (props) => {
                     value={formState.contact_website}
                     onChange={(e) => { setFormState(e.target.value) }}
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
+                    InputLabelProps={{ shrink: true }}
                 />
             </Box>
             <TextField
@@ -123,6 +129,7 @@ export const DisplayCompanyData = (props) => {
                 value={formState.response}
                 onChange={(e) => { setFormState(e.target.value) }}
                 sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
+                InputLabelProps={{ shrink: true }}
             />
             <Typography sx={{ ...style.formTypography }} variant='h4'>Cover Letter</Typography>
             <TextField
@@ -133,13 +140,14 @@ export const DisplayCompanyData = (props) => {
                 value={formState.coverletterText}
                 onChange={(e) => { setFormState(e.target.value) }}
                 sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
+                InputLabelProps={{ shrink: true }}
             />
             <Button
                 fullWidth
                 variant="contained"
                 color="primary"
                 sx={{ mt: 3, mb: 2, ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
-                onClick={() => console.log(formState.coverletter)}
+                onClick={() => console.log(`formState:` + formState)}
             >
                 Submit Changes
             </Button>
