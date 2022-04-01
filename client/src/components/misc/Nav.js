@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import { useNavigate } from 'react-router-dom';
 import logoTextBlack from '../../assets/logo-textBlack.png';
+import auth from '../../utils/auth';
 
 export const Nav = (props) => {
     const navigate = useNavigate();
@@ -55,7 +56,7 @@ export const Nav = (props) => {
                     /> : undefined}
 
                 </Toolbar>
-                <MenuItem onClick={() => console.log('logout')}>
+                <MenuItem onClick={() => auth.logout()}>
                     <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
             </AppBar>
