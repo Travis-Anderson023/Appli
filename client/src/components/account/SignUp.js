@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
@@ -40,59 +41,34 @@ export const SignUp = (props) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         console.log(formState);
-        if (){
 
+        if (!formState.password || !formState.confirm_password || !formState.email || !formState.username) {
+            setMessage("One or more field needs to be filled")
+            setOpen(true);
+        } else if (!formState.email.match(/.+@.+\..+/)) {
+            setMessage("Please check your email format")
+            setOpen(true);
+        } else if (formState.password.length < 5) {
+            setMessage("Your password needs to be at least 5 characters long")
+            setOpen(true);
+        } else if (formState.password !== formState.confirm_password) {
+            setMessage("Your passwords are not matching")
+            setOpen(true);
+        // } else if (formState.email || formState.username === null) {
+        //     setMessage("Email or Username is already in use")
+        //     setOpen(true);
+        } else {
+            try {
+                setOpen(false);
+                const { data } = await addUser({
+                    variables: { ...formState },
+                });
+                Auth.login(data.addUser.token);
+            } catch (e) {
+                console.error(e);
+            }
         }
-        else if (!formState.password || !formState.confirm_password || !formState.email || !formState.username ) {
-            try {
-                setOpen(false);
-                const { data } = await addUser({
-                    variables: { ...formState },
-                });
-                Auth.login(data.addUser.token);
-            } catch (e) {
-                console.error(e);
-                setMessage("One or more field needs to be filled")
-                setOpen(true);
-            }
-        } else if (formState.password === formState.confirm_password) {
-            try {
-                setOpen(false);
-                const { data } = await addUser({
-                    variables: { ...formState },
-                });
-                Auth.login(data.addUser.token);
-            } catch (e) {
-                console.error(e);
-                setMessage("Your passwords are not matching!")
-                setOpen(true);
-            }
-        } else if (formState.email == null) {
-            try {
-                setOpen(false);
-                const { data } = await addUser({
-                    variables: { ...formState },
-                });
-                Auth.login(data.addUser.token);
-            } catch (e) {
-                console.error(e);
-                setMessage("Email must follow the format \n abcd@abcd.abc")
-                setOpen(true);
-            }
-        } else (formState.password.length < 5) {
-            try {
-                setOpen(false);
-                const { data } = await addUser({
-                    variables: { ...formState },
-                });
-                Auth.login(data.addUser.token);
-            } catch (e) {
-                console.error(e);
-                setMessage("Your password needs to be at least 5 characters long!")
-                setOpen(true);
-            }
-        };
-    };
+    }
 
     return (
         <Box sx={{
@@ -175,7 +151,7 @@ export const SignUp = (props) => {
                     aria-describedby="alert-dialog-description"
                     aria-labelledby="alert-dialog-title"
                 >
-                    <DialogTitle sx={{color:'error.main' }} id="alert-dialog-title">
+                    <DialogTitle sx={{ color: 'error.main' }} id="alert-dialog-title">
                         {"Oops!"}
                     </DialogTitle>
                     <DialogContent>
