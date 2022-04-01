@@ -19,7 +19,6 @@ export const App = () => {
   const [page, setPage] = useState(1);
   const isSmOrUp = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
-
   return (
     <BrowserRouter >
       <Box sx={styles.wrapper}>
