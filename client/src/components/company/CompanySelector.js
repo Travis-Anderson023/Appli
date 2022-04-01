@@ -22,7 +22,7 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
                         </Avatar>
                     </ListItemAvatar>
                     <Typography
-                        sx={{ width: '80%' }}
+                        sx={{ width: '78%' }}
                         noWrap
                         variant='h4'
                     >

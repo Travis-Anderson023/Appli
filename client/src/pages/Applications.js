@@ -46,6 +46,19 @@ export const Applications = () => {
             }
         }
     ]
+    const newCompany = {
+        "company": "Add",
+        "date_applied": "Jan 1 2022",
+        "contact_name": "Enter a contact name",
+        "contact_phone": "Enter a contact phone",
+        "contact_email": "Enter an email",
+        "contact_website": "Enter a website",
+        "response": "Jan 1 2022",
+        "coverletter": {
+            "createdAt": "Jan 1 2022",
+            "text": "Enter a coverletter"
+        }
+    }
     const [selectedCompany, setSelectedCompany] = useState(companyArray[0]);
 
 
@@ -59,9 +72,11 @@ export const Applications = () => {
                 width: 'auto',
                 height: '20%',
                 flexDirection: ['column', 'column', 'row', 'row'],
-            }}
+            }
+            }
         >
             <List sx={{ width: 'max-content ', ...reStyles.background, m: '50px' }}>
+                <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                 {companyArray.map((company, index) => {
                     return (
                         <CompanySelector company={company} setSelectedCompany={setSelectedCompany} key={index} />
@@ -71,6 +86,6 @@ export const Applications = () => {
             </List>
             <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} />
             <DisplayCompanyData company={selectedCompany} />
-        </Box>
+        </Box >
     )
 }
