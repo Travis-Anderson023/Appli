@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
-import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import { Box, Button, Paper, TextField, Typography, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText } from "@mui/material";
 import { reStyles } from "../../reusableStyles";
 
 export const SignUp = (props) => {
@@ -15,6 +15,7 @@ export const SignUp = (props) => {
     });
 
     const [addUser] = useMutation(ADD_USER);
+    const [message, setMessage] = useState('');
 
     // update state based on form input changes
     const handleChange = (event) => {
@@ -25,13 +26,23 @@ export const SignUp = (props) => {
         });
     };
 
+    //alerthandler??
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         console.log(formState);
-
         if (formState.password === formState.confirm_password) {
             try {
+                setOpen(false);
                 const { data } = await addUser({
                     variables: { ...formState },
                 });
@@ -40,7 +51,8 @@ export const SignUp = (props) => {
                 console.error(e);
             }
         } else {
-            alert('Your password needs to match!')
+            setMessage("Your passwords are not matching!")
+            setOpen(true);
         }
     };
 
@@ -119,11 +131,24 @@ export const SignUp = (props) => {
                 >
                     Sign In
                 </Button>
-                {/* <SimpleDialog
-                    selectedValue={selectedValue}
+                <Dialog
                     open={open}
                     onClose={handleClose}
-                /> */}
+                    aria-describedby="alert-dialog-description"
+                    aria-labelledby="alert-dialog-title"
+                >
+                    <DialogTitle sx={{color:'error.main' }} id="alert-dialog-title">
+                        {"Oops!"}
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            {message}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button variant='contained' color='error' onClick={handleClose}>Close</Button>
+                    </DialogActions>
+                </Dialog>
             </Paper >
         </Box >
     )
