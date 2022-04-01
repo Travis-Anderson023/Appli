@@ -10,8 +10,9 @@ export const App = () => {
       height: '100vh',
       width: '100vw',
       display: 'flex',
-      flexDirection: 'column',
-
+      flexDirection: ['column-reverse', 'column'],
+      overflow: 'auto',
+      justifyContent: 'space-between',
     }
   }
   const [appFilter, setAppFilter] = useState('');
@@ -22,14 +23,14 @@ export const App = () => {
     <BrowserRouter >
       <Box sx={styles.wrapper}>
 
-        {window.location.pathname !== '/' && isSmOrUp ? <Nav setAppFilter={setAppFilter} isSmOrUp={isSmOrUp} /> : undefined}
+        {window.location.pathname !== '/' ? <Nav setAppFilter={setAppFilter} isSmOrUp={isSmOrUp} page={page} setPage={setPage} /> : undefined}
 
         <Routes >
           <Route path="/" element={<Home />} />
           <Route path="/applications" element={<Applications appFilter={appFilter} />} />
           <Route path="/account" element={<Account />} />
         </Routes>
-        {window.location.pathname !== '/' && !isSmOrUp ? <Nav setAppFilter={setAppFilter} isSmOrUp={isSmOrUp} page={page} setPage={setPage} /> : undefined}
+        {/* {window.location.pathname !== '/' && !isSmOrUp ? <Nav setAppFilter={setAppFilter} isSmOrUp={isSmOrUp} page={page} setPage={setPage} /> : undefined} */}
       </Box>
     </BrowserRouter>
   );

@@ -70,7 +70,8 @@ export const Applications = () => {
                 ...reStyles.background,
                 justifyContent: 'flex-start',
                 width: 'auto',
-                height: '20%',
+                maxHeight: '100%',
+                height: 'fit-content',
                 flexDirection: ['column', 'column', 'row', 'row'],
             }
             }
