@@ -10,8 +10,7 @@ const applicationSchema = new Schema({
     trim: true,
   },
   date_applied: {
-    type: Date,
-    get: (timestamp) => dateFormat(timestamp),
+    type: String,
     required: 'You need to add a date!'
   },
   contact_name: {
