@@ -37,6 +37,7 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
+    applications(username: String!): [Application]
     application(applicationId: ID!): Application
     coverletter(coverletterId: ID!): CoverLetter
     me: User

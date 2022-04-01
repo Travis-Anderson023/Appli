@@ -1,10 +1,26 @@
 import { Box, Divider, List } from "@mui/material";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
 import { reStyles } from "../reusableStyles";
+import { useQuery } from '@apollo/client';
+import { QUERY_USERS, QUERY_USER, QUERY_APPLICATIONS } from "../utils/queries";
+import Auth from '../utils/auth';
 
 export const Applications = () => {
+    const user = Auth.getProfile();
+    console.log(user);
+    let username = user.data.username;
+
+    const { data } = useQuery(QUERY_USER, {
+        variables: {username}
+    });
+
+    const applications = data?.user.applications;
+    console.log(data);
+    console.log(applications);
+
+    const [selectedCompany, setSelectedCompany] = useState(null)
     const companyArray = [
         {
             "company": "Google",
@@ -58,10 +74,7 @@ export const Applications = () => {
             "createdAt": "Jan 1 2022",
             "text": "Enter a coverletter"
         }
-    }
-    const [selectedCompany, setSelectedCompany] = useState(companyArray[0]);
-
-
+    };
 
     return (
         <Box
@@ -78,7 +91,7 @@ export const Applications = () => {
         >
             <List sx={{ width: 'max-content ', ...reStyles.background, m: '50px' }}>
                 <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
-                {companyArray.map((company, index) => {
+                {applications?.map((company, index) => {
                     return (
                         <CompanySelector company={company} setSelectedCompany={setSelectedCompany} key={index} />
                     )
@@ -86,7 +99,7 @@ export const Applications = () => {
                 )}
             </List>
             <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} />
-            <DisplayCompanyData company={selectedCompany} />
+            {/* <DisplayCompanyData company={selectedCompany} /> */}
         </Box >
     )
 }
