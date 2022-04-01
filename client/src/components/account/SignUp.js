@@ -36,7 +36,6 @@ export const SignUp = (props) => {
         setOpen(false);
     };
 
-
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -62,6 +61,8 @@ export const SignUp = (props) => {
                 });
                 Auth.login(data.addUser.token);
             } catch (e) {
+                setMessage("Username or email is already in use")
+                setOpen(true);
                 console.error(e);
             }
         }
