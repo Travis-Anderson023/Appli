@@ -40,7 +40,10 @@ export const SignUp = (props) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         console.log(formState);
-        if (formState.password === formState.confirm_password) {
+        if (){
+
+        }
+        else if (!formState.password || !formState.confirm_password || !formState.email || !formState.username ) {
             try {
                 setOpen(false);
                 const { data } = await addUser({
@@ -49,11 +52,46 @@ export const SignUp = (props) => {
                 Auth.login(data.addUser.token);
             } catch (e) {
                 console.error(e);
+                setMessage("One or more field needs to be filled")
+                setOpen(true);
             }
-        } else {
-            setMessage("Your passwords are not matching!")
-            setOpen(true);
-        }
+        } else if (formState.password === formState.confirm_password) {
+            try {
+                setOpen(false);
+                const { data } = await addUser({
+                    variables: { ...formState },
+                });
+                Auth.login(data.addUser.token);
+            } catch (e) {
+                console.error(e);
+                setMessage("Your passwords are not matching!")
+                setOpen(true);
+            }
+        } else if (formState.email == null) {
+            try {
+                setOpen(false);
+                const { data } = await addUser({
+                    variables: { ...formState },
+                });
+                Auth.login(data.addUser.token);
+            } catch (e) {
+                console.error(e);
+                setMessage("Email must follow the format \n abcd@abcd.abc")
+                setOpen(true);
+            }
+        } else (formState.password.length < 5) {
+            try {
+                setOpen(false);
+                const { data } = await addUser({
+                    variables: { ...formState },
+                });
+                Auth.login(data.addUser.token);
+            } catch (e) {
+                console.error(e);
+                setMessage("Your password needs to be at least 5 characters long!")
+                setOpen(true);
+            }
+        };
     };
 
     return (
