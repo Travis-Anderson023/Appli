@@ -6,7 +6,7 @@ const resolvers = {
   Query: {
     users: async () => {
       console.log('hi');
-      return User.find().populate('applications').populate({
+      return User.find().select('-_password').populate('applications').populate({
         path: 'applications',
         populate: 'coverletter'
       });

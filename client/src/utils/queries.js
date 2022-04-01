@@ -2,12 +2,28 @@ import { gql } from '@apollo/client';
 
 export const QUERY_USERS = gql`
   query users {
-    user {
+    users {
       _id
       username
       email
       password
-      applications
+      applications {
+        _id
+        company
+        date_applied
+        contact_name
+        contact_phone
+        contact_email
+        contact_website
+        response
+        createdAt
+        coverletter {
+          _id
+          text
+          createdAt
+          updatedAt
+        }
+      }
     }
   }
 `;
@@ -19,7 +35,23 @@ export const QUERY_USER = gql`
       username
       email
       password
-      applications
+      applications {
+        _id
+        company
+        date_applied
+        contact_name
+        contact_phone
+        contact_email
+        contact_website
+        response
+        createdAt
+        coverletter {
+          _id
+          text
+          createdAt
+          updatedAt
+        }
+      }
     }
   }
 `;
@@ -36,7 +68,12 @@ export const QUERY_APPLICATIONS = gql`
       contact_website
       response
       createdAt
-      coverletter
+      coverletter {
+        _id
+        text
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
