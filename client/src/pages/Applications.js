@@ -11,14 +11,14 @@ export const Applications = () => {
     const user = Auth.getProfile();
     console.log(user);
     let username = user.data.username;
-
+    
     const { data } = useQuery(QUERY_USER, {
         variables: {username}
     });
 
-    const applications = data?.user.applications;
-    console.log(data);
-    console.log(applications);
+    const [applications,setApplications] = useState(data?.user.applications)
+
+    // const applications = data?.user.applications;
 
     const [selectedCompany, setSelectedCompany] = useState(null)
     const companyArray = [

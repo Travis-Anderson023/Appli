@@ -60,3 +60,13 @@ export const ADD_COVERLETTER = gql`
     }
   }
 `;
+
+export const DELETE_APPLICATION = gql`
+  mutation deleteApplication($applicationId: ID!) {
+    deleteApplication(applicationId: $applicationId) {
+  
+        _id
+      
+    }
+  }
+`;

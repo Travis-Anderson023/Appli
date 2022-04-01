@@ -58,6 +58,20 @@ const resolvers = {
 
       return { token, user };
     },
+    deleteApplication: async (parent, {applicationId}, context) => {
+      if (context.user) {
+        const application = await Application.findOneAndRemove({_id: applicationId});
+
+        await User.findOneAndUpdate(
+          {_id: context.user._id},
+          { $pull: { applications: { _id: application._id } } }
+        )
+
+        return User;
+
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     addCoverLetter: async (parent, { text }, context) => {
       if (context.user) {
         const coverLetter = await CoverLetter.create({

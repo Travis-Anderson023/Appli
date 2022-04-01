@@ -50,6 +50,7 @@ const typeDefs = gql`
     addCoverLetter(text: String!): CoverLetter
     updateCoverLetter(coverletterId: ID!, text:String!): CoverLetter
     updateApplication(applicationId: ID!, company: String, date_applied: String, contact_name: String, contact_phone: String, contact_email: String, contact_website: String): Application
+    deleteApplication(applicationId: ID!): Application
   }
 `;
 
