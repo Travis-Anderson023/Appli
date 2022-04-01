@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_USERS = gql`
-  query user {
+  query users {
     user {
       _id
       username
@@ -25,8 +25,8 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_APPLICATIONS = gql`
-  query application {
-    application {
+  query applications ($username: String!) {
+    applications(username: $username) {
       _id
       company
       date_applied

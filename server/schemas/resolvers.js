@@ -5,16 +5,22 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     users: async () => {
+      console.log('hi');
       return User.find().populate('applications').populate({
         path: 'applications',
         populate: 'coverletter'
       });
     },
-    user: async (parent, { username }) => {
+    user: async (parent, { username }, context) => {
+      console.log(context.user)
       return User.findOne({username}).populate('applications').populate({
         path: 'applications',
         populate: 'coverletter'
       });
+    },
+    applications: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Application.find(params).populate('coverletter').sort({ createdAt: -1 });
     },
     application: async (parent, { applicationId }) => {
       return Application.findOne({ _id: applicationId }).populate('coverletter');

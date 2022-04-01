@@ -3,8 +3,28 @@ import { useState } from "react";
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
 import { reStyles } from "../reusableStyles";
+import { useQuery } from '@apollo/client';
+import { QUERY_USERS, QUERY_APPLICATIONS } from "../utils/queries";
 
 export const Applications = () => {
+
+    const { data } = useQuery(QUERY_USERS);
+
+    // const {data} = useQuery(QUERY_APPLICATIONS, {
+    //     variables: {username: "sal"}
+    // })
+
+    console.log(data);
+    
+    // let username = data.username;
+    // console.log(username);
+
+    // const { applicationData } = useQuery(QUERY_APPLICATIONS, {
+    //     variables: {username}
+    // });
+
+    // console.log(applicationData)
+
     const [selectedCompany, setSelectedCompany] = useState(null)
     const companyArray = [
         {
