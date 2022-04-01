@@ -1,15 +1,14 @@
 import { Box, Divider, List } from "@mui/material";
-import { useState } from "react";
+import { useState } from 'react';
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
 import { reStyles } from "../reusableStyles";
 
 export const Applications = () => {
-    const [selectedCompany, setSelectedCompany] = useState(null)
     const companyArray = [
         {
             "company": "Google",
-            "date_applied": `March 29 2022`,
+            "date_applied": `March 31 2022`,
             "contact_name": "Mary",
             "contact_phone": "123-456-7890",
             "contact_email": "google@email.com",
@@ -21,7 +20,7 @@ export const Applications = () => {
             }
         },
         {
-            "company": "Microsoft",
+            "company": "Microsoftt",
             "date_applied": "March 29",
             "contact_name": "Tim",
             "contact_phone": "123-456-7890",
@@ -30,12 +29,12 @@ export const Applications = () => {
             "response": null,
             "coverletter": {
                 "createdAt": "March 29",
-                "text": "coverletter text"
+                "text": "coverlettder text"
             }
         },
         {
             "company": "Amazon",
-            "date_applied": "March 29",
+            "date_applied": "March 7",
             "contact_name": "Jane",
             "contact_phone": "123-456-7890",
             "contact_email": "amazon@email.com",
@@ -43,23 +42,50 @@ export const Applications = () => {
             "response": "March 31",
             "coverletter": {
                 "createdAt": "March 29",
-                "text": "coverletter text"
+                "text": "coverleddtter text"
             }
         }
     ]
+    const newCompany = {
+        "company": "Add",
+        "date_applied": "Jan 1 2022",
+        "contact_name": "Enter a contact name",
+        "contact_phone": "Enter a contact phone",
+        "contact_email": "Enter an email",
+        "contact_website": "Enter a website",
+        "response": "Jan 1 2022",
+        "coverletter": {
+            "createdAt": "Jan 1 2022",
+            "text": "Enter a coverletter"
+        }
+    }
+    const [selectedCompany, setSelectedCompany] = useState(companyArray[0]);
+
+
 
     return (
-        <Box sx={{ ...reStyles.flexContainer, ...reStyles.background, justifyContent: 'flex-start', width: 'auto' }}>
-            <List sx={{ width: 'max-content ', bgcolor: 'background.paper', m: '50px' }}>
+        <Box
+            sx={{
+                ...reStyles.flexContainer,
+                ...reStyles.background,
+                justifyContent: 'flex-start',
+                width: 'auto',
+                height: '20%',
+                flexDirection: ['column', 'column', 'row', 'row'],
+            }
+            }
+        >
+            <List sx={{ width: 'max-content ', ...reStyles.background, m: '50px' }}>
+                <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                 {companyArray.map((company, index) => {
                     return (
-                        <CompanySelector company={company} key={index} />
+                        <CompanySelector company={company} setSelectedCompany={setSelectedCompany} key={index} />
                     )
                 }
                 )}
             </List>
             <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} />
-            <DisplayCompanyData company={companyArray[0]} />
-        </Box>
+            <DisplayCompanyData company={selectedCompany} />
+        </Box >
     )
 }
