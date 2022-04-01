@@ -76,6 +76,7 @@ export const Applications = () => {
         }
     };
 
+    console.log(selectedCompany);
     return (
         <Box
             sx={{
@@ -99,7 +100,7 @@ export const Applications = () => {
                 )}
             </List>
             <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} />
-            {/* <DisplayCompanyData company={selectedCompany} /> */}
+            <DisplayCompanyData company={selectedCompany} newCompany={newCompany} />
         </Box >
     )
 }

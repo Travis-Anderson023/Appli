@@ -31,8 +31,7 @@ const applicationSchema = new Schema({
     trim: true,
   },
   response: {
-    type: Date,
-    get: (timestamp) => dateFormat(timestamp),
+    type: String,
     default: null
   },
   createdAt: {
