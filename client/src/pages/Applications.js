@@ -1,10 +1,26 @@
+import { useQuery } from '@apollo/client';
 import { Box, Divider, List } from "@mui/material";
 import { useState } from 'react';
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
 import { reStyles } from "../reusableStyles";
+import Auth from '../utils/auth';
+import { QUERY_USER } from "../utils/queries";
 
-export const Applications = (props) => {
+export const Applications = () => {
+    const user = Auth.getProfile();
+    console.log(user);
+    let username = user.data.username;
+
+    const { data } = useQuery(QUERY_USER, {
+        variables: { username }
+    });
+
+    const applications = data?.user.applications;
+    console.log(data);
+    console.log(applications);
+
+    const [selectedCompany, setSelectedCompany] = useState(null)
     const companyArray = [
         {
             "company": "Google",
@@ -58,11 +74,9 @@ export const Applications = (props) => {
             "createdAt": "Jan 1 2022",
             "text": "Enter a coverletter"
         }
-    }
-    const [selectedCompany, setSelectedCompany] = useState(companyArray[0]);
+    };
 
-
-
+    console.log(selectedCompany);
     return (
         <Box
             sx={{
@@ -78,15 +92,15 @@ export const Applications = (props) => {
         >
             <List sx={{ width: 'max-content', ...reStyles.background, m: '50px', height: "25%" }}>
                 <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
-                {companyArray.map((company, index) => {
+                {applications?.map((company, index) => {
                     return (
                         <CompanySelector company={company} setSelectedCompany={setSelectedCompany} key={index} />
                     )
                 }
                 )}
             </List>
-            {props.isSmOrUp ? <Divider orientation="vertical" flexItem sx={{ mt: '0px', mb: '0px' }} /> : <Divider flexItem sx={{ m: '0px' }} />}
-            <DisplayCompanyData company={selectedCompany} />
+            <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} />
+            <DisplayCompanyData company={selectedCompany} newCompany={newCompany} />
         </Box >
     )
 }
