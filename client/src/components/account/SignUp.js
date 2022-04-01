@@ -54,9 +54,6 @@ export const SignUp = (props) => {
         } else if (formState.password !== formState.confirm_password) {
             setMessage("Your passwords are not matching")
             setOpen(true);
-        // } else if (formState.email || formState.username === null) {
-        //     setMessage("Email or Username is already in use")
-        //     setOpen(true);
         } else {
             try {
                 setOpen(false);
