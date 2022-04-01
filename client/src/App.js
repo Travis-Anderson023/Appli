@@ -11,7 +11,7 @@ export const App = () => {
       width: '100vw',
       display: 'flex',
       flexDirection: ['column-reverse', 'column'],
-      overflow: 'auto',
+      overflow: 'hidden',
       justifyContent: 'space-between',
     }
   }
@@ -27,10 +27,9 @@ export const App = () => {
 
         <Routes >
           <Route path="/" element={<Home />} />
-          <Route path="/applications" element={<Applications appFilter={appFilter} />} />
+          <Route path="/applications" element={<Applications appFilter={appFilter} isSmOrUp={isSmOrUp} />} />
           <Route path="/account" element={<Account />} />
         </Routes>
-        {/* {window.location.pathname !== '/' && !isSmOrUp ? <Nav setAppFilter={setAppFilter} isSmOrUp={isSmOrUp} page={page} setPage={setPage} /> : undefined} */}
       </Box>
     </BrowserRouter>
   );

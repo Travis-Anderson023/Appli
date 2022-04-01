@@ -4,7 +4,7 @@ import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
 import { reStyles } from "../reusableStyles";
 
-export const Applications = () => {
+export const Applications = (props) => {
     const companyArray = [
         {
             "company": "Google",
@@ -76,7 +76,7 @@ export const Applications = () => {
             }
             }
         >
-            <List sx={{ width: 'max-content ', ...reStyles.background, m: '50px' }}>
+            <List sx={{ width: 'max-content', ...reStyles.background, m: '50px', height: "25%" }}>
                 <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                 {companyArray.map((company, index) => {
                     return (
@@ -85,7 +85,7 @@ export const Applications = () => {
                 }
                 )}
             </List>
-            <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} />
+            {props.isSmOrUp ? <Divider orientation="vertical" flexItem sx={{ mt: '0px', mb: '0px' }} /> : <Divider flexItem sx={{ m: '0px' }} />}
             <DisplayCompanyData company={selectedCompany} />
         </Box >
     )
