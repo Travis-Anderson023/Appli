@@ -9,7 +9,6 @@ import { QUERY_USER } from "../utils/queries";
 
 export const Applications = () => {
     const user = Auth.getProfile();
-    console.log(user);
     let username = user.data.username;
 
     const { data } = useQuery(QUERY_USER, {
