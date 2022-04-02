@@ -19,14 +19,7 @@ const typeDefs = gql`
     contact_website: String
     response: String
     createdAt: String
-    coverletter: CoverLetter
-  }
-
-  type CoverLetter {
-    _id: ID
-    text: String
-    createdAt: String
-    updatedAt: String
+    cover_letter: String
   }
 
   type Auth {
@@ -39,16 +32,13 @@ const typeDefs = gql`
     user(username: String!): User
     applications(username: String!): [Application]
     application(applicationId: ID!): Application
-    coverletter(coverletterId: ID!): CoverLetter
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addApplication(company: String!, date_applied: String!, contact_name: String!, contact_phone: String, contact_email: String!, contact_website: String): Application
-    addCoverLetter(text: String!): CoverLetter
-    updateCoverLetter(coverletterId: ID!, text:String!): CoverLetter
+    addApplication(company: String!, date_applied: String!, contact_name: String!, contact_phone: String, contact_email: String!, contact_website: String, cover_letter: String): Application
     updateApplication(applicationId: ID!, company: String, date_applied: String, contact_name: String, contact_phone: String, contact_email: String, contact_website: String): Application
     deleteApplication(applicationId: ID!): Application
   }

@@ -16,9 +16,16 @@ export const Applications = () => {
         variables: {username}
     });
 
-    const [applications,setApplications] = useState(data?.user.applications)
+    const [applications,setApplications] = useState();
 
-    // const applications = data?.user.applications;
+    const getApplications = async () =>  {
+        await data;
+        setApplications(data.user.applications);
+    }
+
+    getApplications();
+
+    console.log(applications);
 
     const [selectedCompany, setSelectedCompany] = useState(null)
     const companyArray = [
@@ -70,10 +77,7 @@ export const Applications = () => {
         "contact_email": "Enter an email",
         "contact_website": "Enter a website",
         "response": "Jan 1 2022",
-        "coverletter": {
-            "createdAt": "Jan 1 2022",
-            "text": "Enter a coverletter"
-        }
+        "cover_letter": "test"
     };
 
     console.log(selectedCompany);

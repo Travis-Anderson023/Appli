@@ -17,12 +17,7 @@ export const QUERY_USERS = gql`
         contact_website
         response
         createdAt
-        coverletter {
-          _id
-          text
-          createdAt
-          updatedAt
-        }
+        cover_letter
       }
     }
   }
@@ -45,12 +40,7 @@ export const QUERY_USER = gql`
         contact_website
         response
         createdAt
-        coverletter {
-          _id
-          text
-          createdAt
-          updatedAt
-        }
+        cover_letter
       }
     }
   }
@@ -68,12 +58,7 @@ export const QUERY_APPLICATIONS = gql`
       contact_website
       response
       createdAt
-      coverletter {
-        _id
-        text
-        createdAt
-        updatedAt
-      }
+      cover_letter
     }
   }
 `;
@@ -90,17 +75,17 @@ export const QUERY_APPLICATION = gql`
         contact_website
         response
         createdAt
-        coverletter
+        cover_letter
     }
   }
 `;
 
-export const QUERY_COVERLETTER = gql`
-  query coverletter($coverletterId: ID!) {
-    coverletter(coverletterId: $coverletterId) {
-        _id
-        text
-        createdAt
-    }
-  }
-`;
+// export const QUERY_COVERLETTER = gql`
+//   query coverletter($coverletterId: ID!) {
+//     coverletter(coverletterId: $coverletterId) {
+//         _id
+//         text
+//         createdAt
+//     }
+//   }
+// `;
