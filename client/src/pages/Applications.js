@@ -27,7 +27,16 @@ export const Applications = () => {
 
     console.log(applications);
 
-    const [selectedCompany, setSelectedCompany] = useState(null)
+    const [selectedCompany, setSelectedCompany] = useState({
+        "company": "Add",
+        "date_applied": "Jan 1 2022",
+        "contact_name": "Enter a contact name",
+        "contact_phone": "Enter a contact phone",
+        "contact_email": "Enter an email",
+        "contact_website": "Enter a website",
+        "response": "Jan 1 2022",
+        "cover_letter": "test"
+    })
     const companyArray = [
         {
             "company": "Google",
