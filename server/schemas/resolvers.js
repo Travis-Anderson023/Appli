@@ -68,9 +68,10 @@ const resolvers = {
     },
     updateApplication: async (parent, args, context) => {
       if (context.user) {
+        console.log(args);
         const application = await Application.findOneAndUpdate(
           {_id: args.applicationId},
-          {$set: args},
+          {$set: {company:args.company, contact_name:args.contact_name, contact_email:args.contact_email, contact_phone:args.contact_phone, contact_website:args.contact_website, response:args.response, date_applied:args.date_applied, cover_letter:args.cover_letter}},
           { runValidators: true, new: true }
         );
         
