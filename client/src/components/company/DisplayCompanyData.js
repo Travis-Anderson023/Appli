@@ -81,7 +81,7 @@ export const DisplayCompanyData = (props) => {
                 height: '80%',
                 overflow: 'auto',
                 overflowX: 'hidden',
-                width: 'fit-content',
+                width: ['fit-content', '80%'],
             }}
         >
 
