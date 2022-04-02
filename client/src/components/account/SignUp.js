@@ -80,7 +80,7 @@ export const SignUp = (props) => {
                     width: '70%',
                     ml: '30px',
                     mr: '30px',
-                    transform: ['scale(.6)', 'scale(1)'], mb: ['-130px', '0px']
+                    transform: ['scale(.6)', 'scale(.75)', 'scale(1)'], mb: ['-160px', '0px']
                 }}>
                 < Typography sx={{ fontSize: '3rem' }} >
                     Signup
