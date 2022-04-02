@@ -16,7 +16,7 @@ export const Applications = () => {
     });
 
     const [applications, setApplications] = useState();
-    const [indexToChange, setIndexToChange] = useState(0);
+    let [indexToChange, setIndexToChange] = useState(0);
 
     const getApplications = async () => {
         await data;

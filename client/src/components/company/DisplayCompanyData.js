@@ -65,8 +65,12 @@ export const DisplayCompanyData = (props) => {
                         cover_letter: formState.cover_letter,
                     }
                 });
-                console.log(props.applications);
-                const tempArray = props.applications;
+                console.log('-----------------------------------');
+                let tempVar = JSON.parse(JSON.stringify(props.applications));
+                let tempArray = tempVar;
+                //tempArray[props.indexToChange] = data.updateApplication;
+                console.log(typeof data.updateApplication);
+                console.log(typeof tempArray);
                 tempArray[props.indexToChange] = data.updateApplication;
                 props.setApplications(tempArray);
                 // props.setApplications(prev => ({...prev, 
