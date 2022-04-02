@@ -1,16 +1,7 @@
-import { Paper, Switch, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
-import { useState } from "react";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
 import { reStyles } from "../reusableStyles";
 import { capitalize } from "../utils/helpers";
 export const Account = () => {
-
-    const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem("darkMode") === "true");
-
-    const handleChange = (event) => {
-        setIsDarkMode(event.target.checked);
-        localStorage.setItem('darkMode', event.target.checked);
-        console.log(isDarkMode);
-    };
 
     const UserData = {
         "username": "johndoe",
@@ -58,16 +49,6 @@ export const Account = () => {
                             </TableCell>
                         </TableRow>
                         <TableRow >
-                            <TableCell component="th" scope="row">
-                                Dark Mode:
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="right">
-                                <Switch
-                                    checked={isDarkMode}
-                                    onChange={handleChange}
-                                    inputProps={{ 'aria-label': 'controlled' }}
-                                />
-                            </TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

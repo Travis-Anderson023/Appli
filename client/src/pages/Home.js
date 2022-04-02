@@ -13,7 +13,7 @@ export const Home = () => {
 
     return (
         <Box sx={{ ...reStyles.background, ...reStyles.flexContainer, flexDirection: ['column-reverse', 'column-reverse', 'column-reverse', 'row'] }}>
-            <Box sx={{ ...reStyles.flexContainer, flexDirection: ['column', 'column', 'row'], position: 'relative', maxWidth: '40%', transform: ['scale(.7)', 'scale(.7)', 'scale(1)'], mt: ['-50px', '-50px', '0px'] }}>
+            <Box sx={{ ...reStyles.flexContainer, flexDirection: ['column', 'column', 'row'], position: 'relative', maxWidth: '40%', transform: ['scale(.7)', 'scale(.7)', 'scale(1)'], mt: ['-50px', '-50px', '0px'], ml: ['0px', '0px', '0px', '20px'] }}>
                 <img src={logoIcon} style={{ height: ['10px', '20%', '20%', 'fit-content'] }} alt='logo' />
                 <img src={logoTextFB} style={{ height: '10vh' }} alt='logotest' />
             </Box>
