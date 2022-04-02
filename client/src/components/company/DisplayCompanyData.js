@@ -113,6 +113,7 @@ export const DisplayCompanyData = (props) => {
                 overflow: 'auto',
                 overflowX: 'hidden',
                 width: ['fit-content', '80%'],
+                textAlign: 'center'
             }}
         >
 
