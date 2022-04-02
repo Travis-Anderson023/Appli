@@ -10,27 +10,26 @@ export const App = () => {
       height: '100vh',
       width: '100vw',
       display: 'flex',
-      flexDirection: 'column',
-
+      flexDirection: ['column-reverse', 'column'],
+      overflow: 'hidden',
+      justifyContent: 'space-between',
     }
   }
   const [appFilter, setAppFilter] = useState('');
   const [page, setPage] = useState(1);
   const isSmOrUp = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
-
   return (
     <BrowserRouter >
       <Box sx={styles.wrapper}>
 
-        {window.location.pathname !== '/' && isSmOrUp ? <Nav setAppFilter={setAppFilter} isSmOrUp={isSmOrUp} /> : undefined}
+        {window.location.pathname !== '/' ? <Nav setAppFilter={setAppFilter} isSmOrUp={isSmOrUp} page={page} setPage={setPage} /> : undefined}
 
         <Routes >
-          <Route path="/" element={<Home />} />
-          <Route path="/applications" element={<Applications appFilter={appFilter} />} />
+          <Route path="/" element={<Home isSmOrUp={isSmOrUp} />} />
+          <Route path="/applications" element={<Applications appFilter={appFilter} isSmOrUp={isSmOrUp} />} />
           <Route path="/account" element={<Account />} />
         </Routes>
-        {window.location.pathname !== '/' && !isSmOrUp ? <Nav setAppFilter={setAppFilter} isSmOrUp={isSmOrUp} page={page} setPage={setPage} /> : undefined}
       </Box>
     </BrowserRouter>
   );

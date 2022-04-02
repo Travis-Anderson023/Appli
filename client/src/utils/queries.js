@@ -1,13 +1,24 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_USERS = gql`
-  query user {
-    user {
+  query users {
+    users {
       _id
       username
       email
       password
-      applications
+      applications {
+        _id
+        company
+        date_applied
+        contact_name
+        contact_phone
+        contact_email
+        contact_website
+        response
+        createdAt
+        cover_letter
+      }
     }
   }
 `;
@@ -19,14 +30,25 @@ export const QUERY_USER = gql`
       username
       email
       password
-      applications
+      applications {
+        _id
+        company
+        date_applied
+        contact_name
+        contact_phone
+        contact_email
+        contact_website
+        response
+        createdAt
+        cover_letter
+      }
     }
   }
 `;
 
 export const QUERY_APPLICATIONS = gql`
-  query application {
-    application {
+  query applications ($username: String!) {
+    applications(username: $username) {
       _id
       company
       date_applied
@@ -36,7 +58,7 @@ export const QUERY_APPLICATIONS = gql`
       contact_website
       response
       createdAt
-      coverletter
+      cover_letter
     }
   }
 `;
@@ -53,17 +75,17 @@ export const QUERY_APPLICATION = gql`
         contact_website
         response
         createdAt
-        coverletter
+        cover_letter
     }
   }
 `;
 
-export const QUERY_COVERLETTER = gql`
-  query coverletter($coverletterId: ID!) {
-    coverletter(coverletterId: $coverletterId) {
-        _id
-        text
-        createdAt
-    }
-  }
-`;
+// export const QUERY_COVERLETTER = gql`
+//   query coverletter($coverletterId: ID!) {
+//     coverletter(coverletterId: $coverletterId) {
+//         _id
+//         text
+//         createdAt
+//     }
+//   }
+// `;
