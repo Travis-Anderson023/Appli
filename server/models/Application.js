@@ -39,11 +39,10 @@ const applicationSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  coverletter: 
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'CoverLetter'
-    },
+  cover_letter: {
+    type: String,
+    default: null
+  },
 });
 
 const Application = model('Application', applicationSchema);

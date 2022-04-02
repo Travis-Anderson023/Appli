@@ -11,13 +11,20 @@ export const Applications = () => {
     const user = Auth.getProfile();
     console.log(user);
     let username = user.data.username;
-
+    
     const { data } = useQuery(QUERY_USER, {
         variables: { username }
     });
 
-    const applications = data?.user.applications;
-    console.log(data);
+    const [applications,setApplications] = useState();
+
+    const getApplications = async () =>  {
+        await data;
+        setApplications(data.user.applications);
+    }
+
+    getApplications();
+
     console.log(applications);
 
     const [selectedCompany, setSelectedCompany] = useState(null)
@@ -70,10 +77,7 @@ export const Applications = () => {
         "contact_email": "Enter an email",
         "contact_website": "Enter a website",
         "response": "Jan 1 2022",
-        "coverletter": {
-            "createdAt": "Jan 1 2022",
-            "text": "Enter a coverletter"
-        }
+        "cover_letter": "test"
     };
 
     console.log(selectedCompany);
