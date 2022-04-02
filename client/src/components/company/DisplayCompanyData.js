@@ -56,7 +56,9 @@ export const DisplayCompanyData = (props) => {
 
     const style = {
         formItem: {
-            margin: '10px',
+            ml: '0',
+            mr: '0',
+            mb: '20px',
             width: '100%',
         },
         formBox: {
@@ -64,7 +66,7 @@ export const DisplayCompanyData = (props) => {
             flexDirection: ['column', 'column', 'column', 'row'],
         },
         formTypography: {
-            margin: ['20px', '20px', '20px', '10px'],
+            margin: ['20px', '20px', '20px'],
             color: 'text.secondary',
         }
     }
@@ -72,17 +74,19 @@ export const DisplayCompanyData = (props) => {
         <Box
             sx={{
                 ...reStyles.flexContainer,
+                flex: 3,
                 flexDirection: 'column',
                 p: '50px',
                 justifyContent: 'flex-start',
                 alignItems: 'flex-start',
                 height: '80%',
                 overflow: 'auto',
-                overflowX: 'hidden'
+                overflowX: 'hidden',
+                width: 'fit-content',
             }}
         >
 
-            <Typography sx={{ ...style.formTypography }} variant='h4'>Company Information</Typography>
+            <Typography sx={{ ...style.formTypography, }} variant='h4'>Company Information</Typography>
             <Box sx={{ ...style.formItem, ...style.formBox }}>
                 <TextField
                     id="Company-name"
