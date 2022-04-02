@@ -175,7 +175,7 @@ export const DisplayCompanyData = (props) => {
                 fullWidth
                 variant="contained"
                 color="primary"
-                sx={{ mt: 3, mb: 2, ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
+                sx={{ mt: 3, mb: 2, ...style.formItem }}
                 onClick={() => console.log(formState)}
             >
                 Submit Changes
