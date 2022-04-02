@@ -10,6 +10,7 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
                 sx={{
                     borderRadius: '10px 0 0 10px',
                     alignItems: 'flex-start',
+                    height: '100%',
                     width: '100%',
                     justifyContent: 'space-between'
                 }}
@@ -17,14 +18,14 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
             >
                 <Box sx={{ display: 'flex' }}>
                     <ListItemAvatar>
-                        <Avatar>
+                        <Avatar sx={{ height: '25px', width: '25px' }}>
                             <WorkIcon />
-                        </Avatar>
+                        </Avatar >
                     </ListItemAvatar>
                     <Typography
                         sx={{ width: '78%' }}
                         noWrap
-                        variant='h4'
+                        variant='h10'
                     >
                         {company.company}
                     </Typography>
@@ -35,7 +36,7 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
                 edge="end"
                 aria-label="delete"
                 onClick={() => console.log('TODO DELETE VALIDATION USING DIALOG MUI')}
-                sx={{ height: '53px', borderRadius: '0 10px 10px 0' }}
+                sx={{ height: '100%', borderRadius: '0 10px 10px 0' }}
                 color='error'
                 variant='contained'>
                 <DeleteIcon />

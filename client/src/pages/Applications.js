@@ -1,11 +1,11 @@
+import { useQuery } from '@apollo/client';
 import { Box, Divider, List } from "@mui/material";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
 import { reStyles } from "../reusableStyles";
-import { useQuery } from '@apollo/client';
-import { QUERY_USERS, QUERY_USER, QUERY_APPLICATIONS } from "../utils/queries";
 import Auth from '../utils/auth';
+import { QUERY_USER } from "../utils/queries";
 
 export const Applications = () => {
     const user = Auth.getProfile();
@@ -13,7 +13,7 @@ export const Applications = () => {
     let username = user.data.username;
 
     const { data } = useQuery(QUERY_USER, {
-        variables: {username}
+        variables: { username }
     });
 
     const applications = data?.user.applications;
@@ -90,7 +90,7 @@ export const Applications = () => {
             }
             }
         >
-            <List sx={{ width: 'max-content ', ...reStyles.background, m: '50px' }}>
+            <List sx={{ width: 'max-content', ...reStyles.background, m: '50px', height: "25%" }}>
                 <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                 {applications?.map((company, index) => {
                     return (
