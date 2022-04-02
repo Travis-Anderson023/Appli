@@ -157,7 +157,7 @@ export const DisplayCompanyData = (props) => {
                 multiline
                 value={formState.response}
                 onChange={(e) => setFormState(prevstate => ({ ...prevstate, company: e.target.value }))}
-                sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
+                sx={{ ...style.formItem }}
                 InputLabelProps={{ shrink: true }}
             />
             <Typography sx={{ ...style.formTypography }} variant='h4'>Cover Letter</Typography>
@@ -168,7 +168,7 @@ export const DisplayCompanyData = (props) => {
                 rows={8}
                 value={formState.coverletterText}
                 onChange={(e) => setFormState(prevstate => ({ ...prevstate, company: e.target.value }))}
-                sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
+                sx={{ ...style.formItem }}
                 InputLabelProps={{ shrink: true }}
             />
             <Button
