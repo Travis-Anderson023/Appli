@@ -1,9 +1,30 @@
+import { useMutation } from '@apollo/client';
 import DeleteIcon from '@mui/icons-material/Delete';
 import WorkIcon from '@mui/icons-material/Work';
 import { Avatar, Box, Button, ListItem, ListItemAvatar, Typography } from "@mui/material";
 import { format } from 'date-fns';
+import { DELETE_APPLICATION } from '../../utils/mutations';
 
 export const CompanySelector = ({ company, setSelectedCompany }) => {
+
+    const [deleteApplication] = useMutation(DELETE_APPLICATION);
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        const id = event.target.getAttribute('data-id');
+        if (id) {
+            console.log("hi", id);
+            try {
+                const { data } = await deleteApplication({
+                    variables: { applicationId: id },
+                });
+                console.log(data.user);
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    };
+
     return (
         <ListItem sx={{ display: 'flex' }} >
             <Button color='inherit' variant='contained'
@@ -19,7 +40,7 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
                 <Box sx={{ display: 'flex' }}>
                     <ListItemAvatar>
                         <Avatar sx={{ height: '25px', width: '25px' }}>
-                            <WorkIcon />
+                            <WorkIcon sx={{ width: '60%' }} />
                         </Avatar >
                     </ListItemAvatar>
                     <Typography
@@ -35,7 +56,8 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
             <Button
                 edge="end"
                 aria-label="delete"
-                onClick={() => console.log('TODO DELETE VALIDATION USING DIALOG MUI')}
+                data-id={company._id}
+                onClick={(event) => { handleFormSubmit(event) }}
                 sx={{ height: '100%', borderRadius: '0 10px 10px 0' }}
                 color='error'
                 variant='contained'>

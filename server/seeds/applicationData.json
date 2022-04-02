@@ -6,7 +6,8 @@
         "contact_phone": "123-456-7890",
         "contact_email": "google@email.com",
         "contact_website": "google.ca",
-        "response": "March 20, 2022"
+        "response": "March 20, 2022",
+        "cover_letter": "I would love to work at this company!"
     },
     {
         "company": "Microsoft",
@@ -15,7 +16,8 @@
         "contact_phone": "123-456-7890",
         "contact_email": "microsoft@email.com",
         "contact_website": "microsoft.ca",
-        "response": "March 12, 2022"
+        "response": "March 12, 2022",
+        "cover_letter": "I have so many skills that align with the job description!"
     },
     {
         "company": "Amazon",
@@ -24,6 +26,7 @@
         "contact_phone": "123-456-7890",
         "contact_email": "amazon@email.com",
         "contact_website": "amazon.ca",
-        "response": "March 5, 2022"
+        "response": "March 5, 2022",
+        "cover_letter": "I have 10 years experience in customer relations!"
     }
 ]
