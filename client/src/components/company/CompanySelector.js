@@ -19,7 +19,7 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
                 <Box sx={{ display: 'flex' }}>
                     <ListItemAvatar>
                         <Avatar sx={{ height: '25px', width: '25px' }}>
-                            <WorkIcon />
+                            <WorkIcon sx={{ width: '60%' }} />
                         </Avatar >
                     </ListItemAvatar>
                     <Typography
