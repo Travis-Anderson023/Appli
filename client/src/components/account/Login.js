@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { Box, Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, Paper, TextField, Typography } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Paper, TextField, Typography } from "@mui/material";
 import React, { useState } from 'react';
 import { reStyles } from "../../reusableStyles";
 import Auth from '../../utils/auth';
@@ -92,11 +92,12 @@ export const Login = (props) => {
                     onChange={handleChange}
                 />
                 <Box sx={{ position: 'relative' }}>
-                    <FormControlLabel
+                    {/* todo add remember me */}
+                    {/* <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"
-                    />
-                    <Button style={{ position: 'absolute', padding: 0, right: 0 }} color='inherit'>
+                    /> */}
+                    <Button style={{ position: 'relative', padding: 0, right: 0 }} color='inherit'>
                         <Typography sx={{ fontSize: '16px', textTransform: 'none', m: '9px', mr: '0px' }}
                             onClick={() => { props.setIsLoginScreen(!props.isLoginScreen) }}>Need an account?</Typography>
                     </Button>
