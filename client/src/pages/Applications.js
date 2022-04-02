@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { Box, Divider, List } from "@mui/material";
+import { Box, Divider, List, useMediaQuery } from "@mui/material";
 import { useState } from 'react';
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
@@ -17,8 +17,6 @@ export const Applications = () => {
     });
 
     const applications = data?.user.applications;
-    console.log(data);
-    console.log(applications);
 
     const [selectedCompany, setSelectedCompany] = useState(null)
     const companyArray = [
@@ -99,7 +97,7 @@ export const Applications = () => {
                 }
                 )}
             </List>
-            <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} />
+            {useMediaQuery((theme) => theme.breakpoints.up('md')) ? <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} /> : <Divider flexItem />}
             <DisplayCompanyData company={selectedCompany} newCompany={newCompany} />
         </Box >
     )
