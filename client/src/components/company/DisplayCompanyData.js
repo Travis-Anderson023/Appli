@@ -32,6 +32,8 @@ export const DisplayCompanyData = (props) => {
         if (value === 'Add Application') {
             console.log('hi');
             try {
+                console.log(props.company);
+                console.log(props.company._id);
                 const { data } = await addApplication({
                     variables: {
                         company: formState.company,
@@ -44,7 +46,14 @@ export const DisplayCompanyData = (props) => {
                         cover_letter: formState.cover_letter,
                     }
                 });
-                console.log(data);
+                console.log("--------------------");
+                console.log(data.addApplication);
+                let tempVar = JSON.parse(JSON.stringify(props.applications));
+                console.log(tempVar);
+                let tempArray = tempVar;
+                tempArray.push(data.addApplication);
+                console.log(tempArray);
+                props.setApplications(tempArray);
             } catch (e) {
                 console.error(e)
             }

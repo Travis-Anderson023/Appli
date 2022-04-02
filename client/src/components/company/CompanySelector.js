@@ -12,7 +12,7 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const id = event.target.getAttribute('data-id');
-        console.log(id);
+        console.log("hi", id);
         if (id) {
             console.log("hi", id);
             try {
