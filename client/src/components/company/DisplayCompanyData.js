@@ -3,9 +3,10 @@ import { format } from 'date-fns';
 import { useMutation } from '@apollo/client';
 import { useEffect, useState } from "react";
 import { reStyles } from "../../reusableStyles";
-import { UPDATE_APPLICATION } from "../../utils/mutations";
+import { ADD_APPLICATION, UPDATE_APPLICATION } from "../../utils/mutations";
 
 export const DisplayCompanyData = (props) => {
+    console.log(props.applications);
     console.log('props.company------')
     console.log(props.company);
     console.log('props.newcompany---')
@@ -19,16 +20,20 @@ export const DisplayCompanyData = (props) => {
     let { company, date_applied, contact_name, contact_phone, contact_email, contact_website, response, coverletter } = props.newCompany
 
     const [updateApplication] = useMutation(UPDATE_APPLICATION);
+    const [addApplication] = useMutation(ADD_APPLICATION);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         console.log(formState);
-        try {
-            console.log(props.company);
-            console.log(props.company._id);
-            const { data } = await updateApplication({
+        
+        let value = document.getElementById('button').textContent;
+        console.log(value);
+            
+        if(value==='Add Application') {
+            console.log('hi');
+            try{
+                const { data } = await addApplication({
                 variables: {
-                    applicationId: props.company._id,
                     company: formState.company,
                     contact_name: formState.contact_name,
                     contact_email: formState.contact_email,
@@ -37,12 +42,42 @@ export const DisplayCompanyData = (props) => {
                     response: formState.response,
                     date_applied: formState.date_applied,
                     cover_letter: formState.cover_letter, 
-                },
+                }
             });
             console.log(data);
+            } catch (e) {
+               console.error(e)
+            }
+        } else if(value==='Submit Changes') {
+        try{
+            console.log(props.company);
+            console.log(props.company._id);
+            const { data } = await updateApplication({
+            variables: {
+                applicationId: props.company._id,
+                company: formState.company,
+                contact_name: formState.contact_name,
+                contact_email: formState.contact_email,
+                contact_phone: formState.contact_phone,
+                contact_website: formState.contact_website,
+                response: formState.response,
+                date_applied: formState.date_applied,
+                cover_letter: formState.cover_letter, 
+            }
+        });
+        console.log(data);
+
+       props.applications.map((company, index) => {
+        if (data.updateApplication._id === props.company.id) {
+        props.setApplications(prev=>[...prev, company])
+        } else {
+        props.setApplications(company)
+        }
+        })
         } catch (e) {
            console.error(e)
         }
+    }
     };
 
     useEffect(()=>{
@@ -203,6 +238,7 @@ export const DisplayCompanyData = (props) => {
             />
             <Button
                 fullWidth
+                id="button"
                 variant="contained"
                 color="primary"
                 sx={{ mt: 3, mb: 2, ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
