@@ -8,23 +8,23 @@ export const DisplayCompanyData = (props) => {
     console.log('props.newcompany---')
     console.log(props.newCompany)
     let tempcompany = {};
-    if(props.company === null){
+    if (props.company === null) {
         tempcompany = props.newCompany;
     } else {
         tempcompany = props.company;
     };
     let { company, date_applied, contact_name, contact_phone, contact_email, contact_website, response, coverletter } = props.newCompany
 
-    useEffect(()=>{
-        if(props.company){
-        company = props.company.company;
-        date_applied = props.company.date_applied;
-        contact_name = props.company.contact_name;
-        contact_phone = props.company.contact_phone;
-        contact_email = props.company.contact_email;
-        contact_website = props.company.contact_website;
-        response = props.company.response;
-        coverletter = props.company.coverletter;
+    useEffect(() => {
+        if (props.company) {
+            company = props.company.company;
+            date_applied = props.company.date_applied;
+            contact_name = props.company.contact_name;
+            contact_phone = props.company.contact_phone;
+            contact_email = props.company.contact_email;
+            contact_website = props.company.contact_website;
+            response = props.company.response;
+            coverletter = props.company.coverletter;
         }
     }, [props.company])
 
@@ -58,6 +58,7 @@ export const DisplayCompanyData = (props) => {
             mr: '0',
             mb: '20px',
             width: '100%',
+            gap: '10px',
         },
         formBox: {
             display: 'flex',
