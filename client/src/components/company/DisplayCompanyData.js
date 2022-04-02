@@ -3,7 +3,10 @@ import { format } from 'date-fns';
 import { useMutation } from '@apollo/client';
 import { useEffect, useState } from "react";
 import { reStyles } from "../../reusableStyles";
+<<<<<<< HEAD
 import { UPDATE_APPLICATION } from "../../utils/mutations";
+=======
+>>>>>>> develop
 
 export const DisplayCompanyData = (props) => {
     console.log('props.company------')
@@ -11,13 +14,14 @@ export const DisplayCompanyData = (props) => {
     console.log('props.newcompany---')
     console.log(props.newCompany)
     let tempcompany = {};
-    if(props.company === null){
+    if (props.company === null) {
         tempcompany = props.newCompany;
     } else {
         tempcompany = props.company;
     };
     let { company, date_applied, contact_name, contact_phone, contact_email, contact_website, response, coverletter } = props.newCompany
 
+<<<<<<< HEAD
     const [updateApplication] = useMutation(UPDATE_APPLICATION);
 
     const handleFormSubmit = async (event) => {
@@ -55,6 +59,18 @@ export const DisplayCompanyData = (props) => {
         contact_website = props.company.contact_website;
         response = props.company.response;
         coverletter = props.company.cover_letter;
+=======
+    useEffect(() => {
+        if (props.company) {
+            company = props.company.company;
+            date_applied = props.company.date_applied;
+            contact_name = props.company.contact_name;
+            contact_phone = props.company.contact_phone;
+            contact_email = props.company.contact_email;
+            contact_website = props.company.contact_website;
+            response = props.company.response;
+            coverletter = props.company.cover_letter;
+>>>>>>> develop
         }
     }, [props.company])
 
@@ -88,6 +104,7 @@ export const DisplayCompanyData = (props) => {
             mr: '0',
             mb: '20px',
             width: '100%',
+            gap: '10px',
         },
         formBox: {
             display: 'flex',
@@ -111,7 +128,7 @@ export const DisplayCompanyData = (props) => {
                 height: '80%',
                 overflow: 'auto',
                 overflowX: 'hidden',
-                width: 'fit-content',
+                width: ['fit-content', '80%'],
             }}
         >
 
@@ -122,7 +139,7 @@ export const DisplayCompanyData = (props) => {
                     label="Company Name"
                     multiline
                     value={formState.company}
-                    onChange={(e) => setFormState(prevstate => ({...prevstate, company:e.target.value}))}
+                    onChange={(e) => setFormState(prevstate => ({ ...prevstate, company: e.target.value }))}
                     sx={{ ...style.formItem, ml: [undefined, undefined, undefined, '0'] }}
                     InputLabelProps={{ shrink: true }}
 
@@ -134,7 +151,11 @@ export const DisplayCompanyData = (props) => {
                     multiline
                     label="Date Applied"
                     value={formState.date_applied}
+<<<<<<< HEAD
                     onChange={(e) => setFormState(prevstate => ({...prevstate, date_applied:e.target.value}))}
+=======
+                    onChange={(e) => setFormState(prevstate => ({ ...prevstate, company: e.target.value }))}
+>>>>>>> develop
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
                     InputLabelProps={{ shrink: true }}
                 />
@@ -146,7 +167,11 @@ export const DisplayCompanyData = (props) => {
                     label="Contact Name"
                     multiline
                     value={formState.contact_name}
+<<<<<<< HEAD
                     onChange={(e) => setFormState(prevstate => ({...prevstate, contact_name:e.target.value}))}
+=======
+                    onChange={(e) => setFormState(prevstate => ({ ...prevstate, company: e.target.value }))}
+>>>>>>> develop
                     sx={{ ...style.formItem, ml: [undefined, undefined, undefined, '0'] }}
                     InputLabelProps={{ shrink: true }}
                 />
@@ -155,7 +180,11 @@ export const DisplayCompanyData = (props) => {
                     label="Contact Phone"
                     multiline
                     value={formState.contact_phone}
+<<<<<<< HEAD
                     onChange={(e) => setFormState(prevstate => ({...prevstate, contact_phone:e.target.value}))}
+=======
+                    onChange={(e) => setFormState(prevstate => ({ ...prevstate, company: e.target.value }))}
+>>>>>>> develop
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
                     InputLabelProps={{ shrink: true }}
                 />
@@ -166,7 +195,11 @@ export const DisplayCompanyData = (props) => {
                     label="Contact Email"
                     multiline
                     value={formState.contact_email}
+<<<<<<< HEAD
                     onChange={(e) => setFormState(prevstate => ({...prevstate, contact_email:e.target.value}))}
+=======
+                    onChange={(e) => setFormState(prevstate => ({ ...prevstate, company: e.target.value }))}
+>>>>>>> develop
                     sx={{ ...style.formItem, ml: [undefined, undefined, undefined, '0'] }}
                     InputLabelProps={{ shrink: true }}
                 />
@@ -175,7 +208,11 @@ export const DisplayCompanyData = (props) => {
                     label="Contact Website"
                     multiline
                     value={formState.contact_website}
+<<<<<<< HEAD
                     onChange={(e) => setFormState(prevstate => ({...prevstate, contact_website:e.target.value}))}
+=======
+                    onChange={(e) => setFormState(prevstate => ({ ...prevstate, company: e.target.value }))}
+>>>>>>> develop
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
                     InputLabelProps={{ shrink: true }}
                 />
@@ -185,7 +222,11 @@ export const DisplayCompanyData = (props) => {
                 label="Response"
                 multiline
                 value={formState.response}
+<<<<<<< HEAD
                 onChange={(e) => setFormState(prevstate => ({...prevstate, response:e.target.value}))}
+=======
+                onChange={(e) => setFormState(prevstate => ({ ...prevstate, company: e.target.value }))}
+>>>>>>> develop
                 sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
                 InputLabelProps={{ shrink: true }}
             />
@@ -196,7 +237,11 @@ export const DisplayCompanyData = (props) => {
                 multiline
                 rows={8}
                 value={formState.coverletterText}
+<<<<<<< HEAD
                 onChange={(e) => setFormState(prevstate => ({...prevstate, coverletterText:e.target.value}))}
+=======
+                onChange={(e) => setFormState(prevstate => ({ ...prevstate, company: e.target.value }))}
+>>>>>>> develop
                 sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
                 InputLabelProps={{ shrink: true }}
             />

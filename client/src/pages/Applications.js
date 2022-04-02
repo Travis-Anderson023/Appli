@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { Box, Divider, List } from "@mui/material";
+import { Box, Divider, List, Paper, useMediaQuery } from "@mui/material";
 import { useState } from 'react';
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
@@ -9,16 +9,15 @@ import { QUERY_USER } from "../utils/queries";
 
 export const Applications = () => {
     const user = Auth.getProfile();
-    console.log(user);
     let username = user.data.username;
-    
+
     const { data } = useQuery(QUERY_USER, {
         variables: { username }
     });
 
-    const [applications,setApplications] = useState();
+    const [applications, setApplications] = useState();
 
-    const getApplications = async () =>  {
+    const getApplications = async () => {
         await data;
         setApplications(data.user.applications);
     }
@@ -103,16 +102,18 @@ export const Applications = () => {
             }
             }
         >
-            <List sx={{ width: 'max-content', ...reStyles.background, m: '50px', height: "25%" }}>
-                <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
-                {applications?.map((company, index) => {
-                    return (
-                        <CompanySelector company={company} setSelectedCompany={setSelectedCompany} key={index} />
-                    )
-                }
-                )}
-            </List>
-            <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} />
+            <Paper sx={{ m: '20px', height: "25%", overflow: 'auto' }}>
+                <List sx={{ width: 'max-content', bgcolor: 'background.paper', }}>
+                    <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
+                    {applications?.map((company, index) => {
+                        return (
+                            <CompanySelector company={company} setSelectedCompany={setSelectedCompany} key={index} />
+                        )
+                    }
+                    )}
+                </List>
+            </Paper>
+            {useMediaQuery((theme) => theme.breakpoints.up('md')) ? <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} /> : <Divider flexItem />}
             <DisplayCompanyData company={selectedCompany} newCompany={newCompany} />
         </Box >
     )

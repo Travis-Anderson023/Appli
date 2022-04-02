@@ -1,11 +1,11 @@
 /* eslint-disable no-useless-escape */
-import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
-import Auth from '../../utils/auth';
-
-import { Box, Button, Paper, TextField, Typography, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Paper, TextField, Typography } from "@mui/material";
+import React, { useState } from 'react';
 import { reStyles } from "../../reusableStyles";
+import Auth from '../../utils/auth';
+import { ADD_USER } from '../../utils/mutations';
+
 
 export const SignUp = (props) => {
     const [formState, setFormState] = useState({
@@ -80,6 +80,7 @@ export const SignUp = (props) => {
                     width: '70%',
                     ml: '30px',
                     mr: '30px',
+                    transform: ['scale(.6)', 'scale(.75)', 'scale(1)'], mb: ['-160px', '0px']
                 }}>
                 < Typography sx={{ fontSize: '3rem' }} >
                     Signup

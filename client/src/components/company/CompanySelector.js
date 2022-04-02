@@ -1,8 +1,8 @@
+import { useMutation } from '@apollo/client';
 import DeleteIcon from '@mui/icons-material/Delete';
 import WorkIcon from '@mui/icons-material/Work';
 import { Avatar, Box, Button, ListItem, ListItemAvatar, Typography } from "@mui/material";
 import { format } from 'date-fns';
-import { useMutation } from '@apollo/client';
 import { DELETE_APPLICATION } from '../../utils/mutations';
 
 export const CompanySelector = ({ company, setSelectedCompany }) => {
@@ -12,7 +12,7 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const id = event.target.getAttribute('data-id');
-        if(id) {
+        if (id) {
             console.log("hi", id);
             try {
                 const { data } = await deleteApplication({
@@ -20,7 +20,7 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
                 });
                 console.log(data.user);
             } catch (e) {
-               console.error(e)
+                console.error(e)
             }
         }
     };
@@ -40,7 +40,7 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
                 <Box sx={{ display: 'flex' }}>
                     <ListItemAvatar>
                         <Avatar sx={{ height: '25px', width: '25px' }}>
-                            <WorkIcon />
+                            <WorkIcon sx={{ width: '60%' }} />
                         </Avatar >
                     </ListItemAvatar>
                     <Typography
@@ -58,7 +58,7 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
                 aria-label="delete"
                 data-id={company._id}
                 onClick={(event) => { handleFormSubmit(event) }}
-                sx={{ height: '53px', borderRadius: '0 10px 10px 0' }}
+                sx={{ height: '100%', borderRadius: '0 10px 10px 0' }}
                 color='error'
                 variant='contained'>
                 <DeleteIcon />

@@ -26,7 +26,7 @@ export const App = () => {
         {window.location.pathname !== '/' ? <Nav setAppFilter={setAppFilter} isSmOrUp={isSmOrUp} page={page} setPage={setPage} /> : undefined}
 
         <Routes >
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home isSmOrUp={isSmOrUp} />} />
           <Route path="/applications" element={<Applications appFilter={appFilter} isSmOrUp={isSmOrUp} />} />
           <Route path="/account" element={<Account />} />
         </Routes>
