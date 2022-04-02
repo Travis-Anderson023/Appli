@@ -1,6 +1,6 @@
+import { useMutation } from '@apollo/client';
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { format } from 'date-fns';
-import { useMutation } from '@apollo/client';
 import { useEffect, useState } from "react";
 import { reStyles } from "../../reusableStyles";
 import { ADD_APPLICATION, UPDATE_APPLICATION } from "../../utils/mutations";
@@ -25,71 +25,69 @@ export const DisplayCompanyData = (props) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         console.log(formState);
-        
+
         let value = document.getElementById('button').textContent;
         console.log(value);
-            
-        if(value==='Add Application') {
-            console.log('hi');
-            try{
-                const { data } = await addApplication({
-                variables: {
-                    company: formState.company,
-                    contact_name: formState.contact_name,
-                    contact_email: formState.contact_email,
-                    contact_phone: formState.contact_phone,
-                    contact_website: formState.contact_website,
-                    response: formState.response,
-                    date_applied: formState.date_applied,
-                    cover_letter: formState.cover_letter, 
-                }
-            });
-            console.log(data);
-            } catch (e) {
-               console.error(e)
-            }
-        } else if(value==='Submit Changes') {
-        try{
-            console.log(props.company);
-            console.log(props.company._id);
-            const { data } = await updateApplication({
-            variables: {
-                applicationId: props.company._id,
-                company: formState.company,
-                contact_name: formState.contact_name,
-                contact_email: formState.contact_email,
-                contact_phone: formState.contact_phone,
-                contact_website: formState.contact_website,
-                response: formState.response,
-                date_applied: formState.date_applied,
-                cover_letter: formState.cover_letter, 
-            }
-        });
-        console.log(data);
 
-       props.applications.map((company, index) => {
-        if (data.updateApplication._id === props.company.id) {
-        props.setApplications(prev=>[...prev, company])
-        } else {
-        props.setApplications(company)
+        if (value === 'Add Application') {
+            console.log('hi');
+            try {
+                const { data } = await addApplication({
+                    variables: {
+                        company: formState.company,
+                        contact_name: formState.contact_name,
+                        contact_email: formState.contact_email,
+                        contact_phone: formState.contact_phone,
+                        contact_website: formState.contact_website,
+                        response: formState.response,
+                        date_applied: formState.date_applied,
+                        cover_letter: formState.cover_letter,
+                    }
+                });
+                console.log(data);
+            } catch (e) {
+                console.error(e)
+            }
+        } else if (value === 'Submit Changes') {
+            try {
+                console.log(props.company);
+                console.log(props.company._id);
+                const { data } = await updateApplication({
+                    variables: {
+                        applicationId: props.company._id,
+                        company: formState.company,
+                        contact_name: formState.contact_name,
+                        contact_email: formState.contact_email,
+                        contact_phone: formState.contact_phone,
+                        contact_website: formState.contact_website,
+                        response: formState.response,
+                        date_applied: formState.date_applied,
+                        cover_letter: formState.cover_letter,
+                    }
+                });
+                console.log(props.applications);
+                const tempArray = props.applications;
+                tempArray[props.indexToChange] = data.updateApplication;
+                props.setApplications(tempArray);
+                // props.setApplications(prev => ({...prev, 
+
+                // })
+            } catch (e) {
+                console.error(e)
+            }
         }
-        })
-        } catch (e) {
-           console.error(e)
-        }
-    }
     };
 
-    useEffect(()=>{
-        if(props.company){
-        company = props.company.company;
-        date_applied = props.company.date_applied;
-        contact_name = props.company.contact_name;
-        contact_phone = props.company.contact_phone;
-        contact_email = props.company.contact_email;
-        contact_website = props.company.contact_website;
-        response = props.company.response;
-        coverletter = props.company.cover_letter;
+    useEffect(() => {
+        if (props.company) {
+            company = props.company.company;
+            date_applied = props.company.date_applied;
+            contact_name = props.company.contact_name;
+            contact_phone = props.company.contact_phone;
+            contact_email = props.company.contact_email;
+            contact_website = props.company.contact_website;
+            response = props.company.response;
+            coverletter = props.company.cover_letter;
         }
     }, [props.company])
 
@@ -133,8 +131,7 @@ export const DisplayCompanyData = (props) => {
             margin: ['20px', '20px', '20px'],
             color: 'text.secondary',
         }
-    } 
-
+    }
     return (
         <Box
             sx={{
@@ -170,7 +167,7 @@ export const DisplayCompanyData = (props) => {
                     multiline
                     label="Date Applied"
                     value={formState.date_applied}
-                    onChange={(e) => setFormState(prevstate => ({...prevstate, date_applied:e.target.value}))}
+                    onChange={(e) => setFormState(prevstate => ({ ...prevstate, date_applied: e.target.value }))}
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
                     InputLabelProps={{ shrink: true }}
                 />
@@ -182,7 +179,7 @@ export const DisplayCompanyData = (props) => {
                     label="Contact Name"
                     multiline
                     value={formState.contact_name}
-                    onChange={(e) => setFormState(prevstate => ({...prevstate, contact_name:e.target.value}))}
+                    onChange={(e) => setFormState(prevstate => ({ ...prevstate, contact_name: e.target.value }))}
                     sx={{ ...style.formItem, ml: [undefined, undefined, undefined, '0'] }}
                     InputLabelProps={{ shrink: true }}
                 />
@@ -191,7 +188,7 @@ export const DisplayCompanyData = (props) => {
                     label="Contact Phone"
                     multiline
                     value={formState.contact_phone}
-                    onChange={(e) => setFormState(prevstate => ({...prevstate, contact_phone:e.target.value}))}
+                    onChange={(e) => setFormState(prevstate => ({ ...prevstate, contact_phone: e.target.value }))}
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
                     InputLabelProps={{ shrink: true }}
                 />
@@ -202,7 +199,7 @@ export const DisplayCompanyData = (props) => {
                     label="Contact Email"
                     multiline
                     value={formState.contact_email}
-                    onChange={(e) => setFormState(prevstate => ({...prevstate, contact_email:e.target.value}))}
+                    onChange={(e) => setFormState(prevstate => ({ ...prevstate, contact_email: e.target.value }))}
                     sx={{ ...style.formItem, ml: [undefined, undefined, undefined, '0'] }}
                     InputLabelProps={{ shrink: true }}
                 />
@@ -211,7 +208,7 @@ export const DisplayCompanyData = (props) => {
                     label="Contact Website"
                     multiline
                     value={formState.contact_website}
-                    onChange={(e) => setFormState(prevstate => ({...prevstate, contact_website:e.target.value}))}
+                    onChange={(e) => setFormState(prevstate => ({ ...prevstate, contact_website: e.target.value }))}
                     sx={{ ...style.formItem, mr: [undefined, undefined, undefined, '0'] }}
                     InputLabelProps={{ shrink: true }}
                 />
@@ -221,7 +218,7 @@ export const DisplayCompanyData = (props) => {
                 label="Response"
                 multiline
                 value={formState.response}
-                onChange={(e) => setFormState(prevstate => ({...prevstate, response:e.target.value}))}
+                onChange={(e) => setFormState(prevstate => ({ ...prevstate, response: e.target.value }))}
                 sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
                 InputLabelProps={{ shrink: true }}
             />
@@ -232,7 +229,7 @@ export const DisplayCompanyData = (props) => {
                 multiline
                 rows={8}
                 value={formState.cover_letter}
-                onChange={(e) => setFormState(prevstate => ({...prevstate, cover_letter:e.target.value}))}
+                onChange={(e) => setFormState(prevstate => ({ ...prevstate, cover_letter: e.target.value }))}
                 sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
                 InputLabelProps={{ shrink: true }}
             />

@@ -16,6 +16,7 @@ export const Applications = () => {
     });
 
     const [applications, setApplications] = useState();
+    const [indexToChange, setIndexToChange] = useState(0);
 
     const getApplications = async () => {
         await data;
@@ -66,15 +67,23 @@ export const Applications = () => {
                 <List sx={{ width: 'max-content', bgcolor: 'background.paper', }}>
                     <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                     {applications?.map((company, index) => {
+                        console.log(company._id);
+                        console.log(selectedCompany._id);
+                        if (company._id === selectedCompany._id) {
+                            if (indexToChange !== index) {
+                                setIndexToChange(index);
+                            }
+                        }
                         return (
-                            <CompanySelector company={company} setSelectedCompany={setSelectedCompany} key={index} />
+
+                            < CompanySelector company={company} setSelectedCompany={setSelectedCompany} key={index} />
                         )
                     }
                     )}
                 </List>
             </Paper>
             {useMediaQuery((theme) => theme.breakpoints.up('md')) ? <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} /> : <Divider flexItem />}
-            <DisplayCompanyData applications={applications} company={selectedCompany} newCompany={newCompany} setApplications={setApplications} />
+            <DisplayCompanyData applications={applications} indexToChange={indexToChange} company={selectedCompany} newCompany={newCompany} setApplications={setApplications} />
         </Box >
     )
 }
