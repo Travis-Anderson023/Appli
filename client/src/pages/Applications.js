@@ -48,8 +48,6 @@ export const Applications = () => {
         "response": "Jan 1 2022",
         "cover_letter": "test"
     };
-
-    console.log(selectedCompany);
     return (
         <Box
             sx={{
@@ -67,8 +65,6 @@ export const Applications = () => {
                 <List sx={{ width: 'max-content', ...reStyles.background, }}>
                     <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                     {applications?.map((company, index) => {
-                        console.log(company._id);
-                        console.log(selectedCompany._id);
                         if (company._id === selectedCompany._id) {
                             if (indexToChange !== index) {
                                 setIndexToChange(index);
