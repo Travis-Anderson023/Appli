@@ -86,9 +86,6 @@ export const DisplayCompanyData = (props) => {
         cover_letter: coverletter
     })
 
-    console.log(formState.date_applied);
-    console.log(date_applied);
-    
     useEffect(() => {
         setFormState(prevState => ({
             company: company,

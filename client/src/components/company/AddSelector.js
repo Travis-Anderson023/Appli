@@ -21,9 +21,6 @@ export const AddSelector = ({ company, newCompany, selectedCompany, setSelectedC
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const id = event.target.getAttribute('data-id');
-        console.log(selectedCompany._id);
-        console.log(company._id);
-        console.log(indexToChange);
 
         if (company._id != selectedCompany._id) {
             setMessage("Please select the application you would like to delete prior to deleting!")
@@ -46,7 +43,6 @@ export const AddSelector = ({ company, newCompany, selectedCompany, setSelectedC
     };
 
     const getTimeColor = (days) => {
-        console.log(days);
         switch (true) {
             //greater than 30 days
             case days >= 30:

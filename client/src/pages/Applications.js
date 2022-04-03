@@ -17,8 +17,6 @@ export const Applications = () => {
         variables: { username }
     });
 
-    console.log(data);
-
     const [applications, setApplications] = useState();
     let [indexToChange, setIndexToChange] = useState(0);
 
@@ -70,7 +68,6 @@ export const Applications = () => {
                 <List sx={{ width: 'max-content', ...reStyles.background, }}>
                     <AddSelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                     {applications?.map((company, index) => {
-                        console.log(differenceInCalendarDays(new Date(), new Date(company.response)));
                         if (company._id === selectedCompany._id) {
                             if (indexToChange !== index) {
                                 setIndexToChange(index);
