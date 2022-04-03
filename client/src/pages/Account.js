@@ -14,24 +14,6 @@ export const Account = () => {
         variables: { username }
     });
 
-    let coverLetterCount = 0;
-
-    data?.user.applications.map((application) => {
-        if (application.cover_letter) {
-            coverLetterCount = coverLetterCount + 1
-        }
-        return coverLetterCount
-    })
-
-    console.log(coverLetterCount);
-
-    const userStats = {
-        totalApplications: 3,
-        totalCoverletters: 2,
-        mostRecentApplication: "March 31, 2022",
-        mostRecentInterviewerContact: "March 31, 2022"
-    }
-
     const styles = {
         text: {
             margin: '10px',
