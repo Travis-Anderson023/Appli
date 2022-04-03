@@ -19,16 +19,11 @@ export const DisplayCompanyData = (props) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
 
         let value = document.getElementById('button').textContent;
-        console.log(value);
 
         if (value === 'Add Application') {
-            console.log('hi');
             try {
-                console.log(props.company);
-                console.log(props.company._id);
                 const { data } = await addApplication({
                     variables: {
                         company: formState.company,
@@ -41,25 +36,15 @@ export const DisplayCompanyData = (props) => {
                         cover_letter: formState.cover_letter,
                     }
                 });
-                console.log("----------ADD APP----------");
-                console.log(data.addApplication);
                 let tempVar = JSON.parse(JSON.stringify(data.addApplication));
-                console.log(tempVar);
                 let tempArray = props.applications;
-                console.log(tempArray);
-                console.log('temparray ^^')
                 tempArray = Object.assign([], tempArray, tempVar);
-                tempArray.push(tempVar);
-                console.log(tempArray);
                 props.setApplications(tempArray);
-                console.log(props.applications)
             } catch (e) {
                 console.error(e)
             }
         } else if (value === 'Submit Changes') {
             try {
-                console.log(props.company);
-                console.log(props.company._id);
                 const { data } = await updateApplication({
                     variables: {
                         applicationId: props.company._id,
@@ -73,12 +58,9 @@ export const DisplayCompanyData = (props) => {
                         cover_letter: formState.cover_letter,
                     }
                 });
-                console.log('-----------------------------------');
                 let tempVar = JSON.parse(JSON.stringify(props.applications));
                 let tempArray = tempVar;
                 //tempArray[props.indexToChange] = data.updateApplication;
-                console.log(typeof data.updateApplication);
-                console.log(typeof tempArray);
                 tempArray[props.indexToChange] = data.updateApplication;
                 props.setApplications(tempArray);
                 // props.setApplications(prev => ({...prev, 

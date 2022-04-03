@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { Box, Divider, List, useMediaQuery } from "@mui/material";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
 import { reStyles } from "../reusableStyles";
@@ -18,14 +18,15 @@ export const Applications = () => {
     const [applications, setApplications] = useState();
     let [indexToChange, setIndexToChange] = useState(0);
 
-    const getApplications = async () => {
-        await data;
-        setApplications(data.user.applications);
-    }
+    useEffect(() => {
+        const getApplications = async () => {
+            await data;
+            setApplications(data.user.applications);
+        }
 
-    getApplications();
+        getApplications();
+    }, [data]);
 
-    console.log(applications);
 
     const [selectedCompany, setSelectedCompany] = useState({
         "company": "Add",
