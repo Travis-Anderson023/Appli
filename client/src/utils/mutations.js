@@ -31,8 +31,8 @@ export const LOGIN = gql`
 `;
 
 export const ADD_APPLICATION = gql`
-  mutation addApplication($company: String!, $date_applied: String!, $contact_name: String!, $contact_phone: String, $contact_email: String!, $contact_website: String, $cover_letter: String) {
-    addApplication(company: $company, date_applied: $date_applied, contact_name: $contact_name, contact_phone: $contact_phone, contact_email: $contact_email, contact_website: $contact_website cover_letter: $cover_letter) {
+  mutation addApplication($company: String!, $date_applied: String!, $contact_name: String!, $contact_phone: String, $contact_email: String!, $contact_website: String, $response: String, $cover_letter: String) {
+    addApplication(company: $company, date_applied: $date_applied, contact_name: $contact_name, contact_phone: $contact_phone, contact_email: $contact_email, contact_website: $contact_website, response: $response, cover_letter: $cover_letter) {
         _id
         company
         date_applied
@@ -48,8 +48,8 @@ export const ADD_APPLICATION = gql`
 `;
 
 export const UPDATE_APPLICATION = gql`
-  mutation updateApplication($applicationId: ID!, $company: String!, $date_applied: String!, $contact_name: String!, $contact_phone: String, $contact_email: String!, $contact_website: String, $cover_letter: String) {
-    updateApplication(applicationId: $applicationId, company: $company, date_applied: $date_applied, contact_name: $contact_name, contact_phone: $contact_phone, contact_email: $contact_email, contact_website: $contact_website cover_letter: $cover_letter) {
+  mutation updateApplication($applicationId: ID!, $company: String!, $date_applied: String!, $contact_name: String!, $contact_phone: String, $contact_email: String!, $contact_website: String, $response: String, $cover_letter: String) {
+    updateApplication(applicationId: $applicationId, company: $company, date_applied: $date_applied, contact_name: $contact_name, contact_phone: $contact_phone, contact_email: $contact_email, contact_website: $contact_website, response: $response, cover_letter: $cover_letter) {
       _id
         company
         date_applied
