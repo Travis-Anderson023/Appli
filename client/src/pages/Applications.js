@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { Box, Divider, List, useMediaQuery } from "@mui/material";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
 import { reStyles } from "../reusableStyles";
@@ -20,14 +20,15 @@ export const Applications = () => {
     const [applications, setApplications] = useState();
     let [indexToChange, setIndexToChange] = useState(0);
 
-    const getApplications = async () => {
-        await data;
-        setApplications(data.user.applications);
-    }
+    useEffect(() => {
+        const getApplications = async () => {
+            await data;
+            setApplications(data.user.applications);
+        }
 
-    getApplications();
+        getApplications();
+    }, [data]);
 
-    console.log(applications);
 
     const [selectedCompany, setSelectedCompany] = useState({
         "company": "Add",
@@ -50,8 +51,6 @@ export const Applications = () => {
         "response": "Jan 1 2022",
         "cover_letter": "test"
     };
-
-    console.log(selectedCompany);
     return (
         <Box
             sx={{
@@ -69,8 +68,6 @@ export const Applications = () => {
                 <List sx={{ width: 'max-content', ...reStyles.background, }}>
                     <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                     {applications?.map((company, index) => {
-                        console.log(company._id);
-                        console.log(selectedCompany._id);
                         if (company._id === selectedCompany._id) {
                             if (indexToChange !== index) {
                                 setIndexToChange(index);
