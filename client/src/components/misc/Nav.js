@@ -69,7 +69,7 @@ export const Nav = (props) => {
                 <BottomNavigationAction sx={{ ...styles.botNavAction, transform: 'scale(85%)' }} label="Home" icon={<HomeIcon sx={styles.botNavAction} />} onClick={() => navigate('/')} />
                 <BottomNavigationAction sx={{ ...styles.botNavAction, transform: 'scale(85%)' }} label="Applications" icon={<ContentPasteIcon sx={styles.botNavAction} />} onClick={() => { navigate('/applications') }} />
                 <BottomNavigationAction sx={{ ...styles.botNavAction, transform: 'scale(85%)' }} label="Account" icon={<AccountCircleIcon sx={styles.botNavAction} />} onClick={() => { navigate('/account') }} />
-                <BottomNavigationAction sx={{ ...styles.botNavAction, transform: 'scale(85%)' }} label="Logout" icon={<LogoutIcon sx={styles.botNavAction} />} onClick={() => { console.log('logout') }} />
+                <BottomNavigationAction sx={{ ...styles.botNavAction, transform: 'scale(85%)' }} label="Logout" icon={<LogoutIcon sx={styles.botNavAction} />} onClick={() => auth.logout()} />
             </BottomNavigation >
         )
     }

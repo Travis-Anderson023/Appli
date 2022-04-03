@@ -3,13 +3,9 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { format } from 'date-fns';
 import { useEffect, useState } from "react";
 import { reStyles } from "../../reusableStyles";
-import { UPDATE_APPLICATION } from "../../utils/mutations";
+import { ADD_APPLICATION, UPDATE_APPLICATION } from "../../utils/mutations";
 
 export const DisplayCompanyData = (props) => {
-    console.log('props.company------')
-    console.log(props.company);
-    console.log('props.newcompany---')
-    console.log(props.newCompany)
     let tempcompany = {};
     if (props.company === null) {
         tempcompany = props.newCompany;
@@ -19,29 +15,78 @@ export const DisplayCompanyData = (props) => {
     let { company, date_applied, contact_name, contact_phone, contact_email, contact_website, response, coverletter } = props.newCompany
 
     const [updateApplication] = useMutation(UPDATE_APPLICATION);
+    const [addApplication] = useMutation(ADD_APPLICATION);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         console.log(formState);
-        try {
-            console.log(props.company);
-            console.log(props.company._id);
-            const { data } = await updateApplication({
-                variables: {
-                    applicationId: props.company._id,
-                    company: formState.company,
-                    contact_name: formState.contact_name,
-                    contact_email: formState.contact_email,
-                    contact_phone: formState.contact_phone,
-                    contact_website: formState.contact_website,
-                    response: formState.response,
-                    date_applied: formState.date_applied,
-                    cover_letter: formState.cover_letter,
-                },
-            });
-            console.log(data);
-        } catch (e) {
-            console.error(e)
+
+        let value = document.getElementById('button').textContent;
+        console.log(value);
+
+        if (value === 'Add Application') {
+            console.log('hi');
+            try {
+                console.log(props.company);
+                console.log(props.company._id);
+                const { data } = await addApplication({
+                    variables: {
+                        company: formState.company,
+                        contact_name: formState.contact_name,
+                        contact_email: formState.contact_email,
+                        contact_phone: formState.contact_phone,
+                        contact_website: formState.contact_website,
+                        response: formState.response,
+                        date_applied: formState.date_applied,
+                        cover_letter: formState.cover_letter,
+                    }
+                });
+                console.log("----------ADD APP----------");
+                console.log(data.addApplication);
+                let tempVar = JSON.parse(JSON.stringify(data.addApplication));
+                console.log(tempVar);
+                let tempArray = props.applications;
+                console.log(tempArray);
+                console.log('temparray ^^')
+                tempArray = Object.assign([], tempArray, tempVar);
+                tempArray.push(tempVar);
+                console.log(tempArray);
+                props.setApplications(tempArray);
+                console.log(props.applications)
+            } catch (e) {
+                console.error(e)
+            }
+        } else if (value === 'Submit Changes') {
+            try {
+                console.log(props.company);
+                console.log(props.company._id);
+                const { data } = await updateApplication({
+                    variables: {
+                        applicationId: props.company._id,
+                        company: formState.company,
+                        contact_name: formState.contact_name,
+                        contact_email: formState.contact_email,
+                        contact_phone: formState.contact_phone,
+                        contact_website: formState.contact_website,
+                        response: formState.response,
+                        date_applied: formState.date_applied,
+                        cover_letter: formState.cover_letter,
+                    }
+                });
+                console.log('-----------------------------------');
+                let tempVar = JSON.parse(JSON.stringify(props.applications));
+                let tempArray = tempVar;
+                //tempArray[props.indexToChange] = data.updateApplication;
+                console.log(typeof data.updateApplication);
+                console.log(typeof tempArray);
+                tempArray[props.indexToChange] = data.updateApplication;
+                props.setApplications(tempArray);
+                // props.setApplications(prev => ({...prev, 
+
+                // })
+            } catch (e) {
+                console.error(e)
+            }
         }
     };
 
@@ -99,7 +144,6 @@ export const DisplayCompanyData = (props) => {
             color: 'text.secondary',
         }
     }
-
     return (
         <Box
             sx={{
@@ -204,6 +248,7 @@ export const DisplayCompanyData = (props) => {
             />
             <Button
                 fullWidth
+                id="button"
                 variant="contained"
                 color="primary"
                 sx={{ mt: 3, mb: 2, ...style.formItem }}
