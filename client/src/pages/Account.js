@@ -1,9 +1,8 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
-import { reStyles } from "../reusableStyles";
-import { capitalize } from "../utils/helpers";
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from "../utils/queries";
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
+import { reStyles } from "../reusableStyles";
 import Auth from '../utils/auth';
+import { QUERY_USER } from "../utils/queries";
 
 export const Account = () => {
 
@@ -14,13 +13,13 @@ export const Account = () => {
         variables: { username }
     });
 
-let coverLetterCount = 0;
+    let coverLetterCount = 0;
 
     data?.user.applications.map((application) => {
-    if(application.cover_letter) {
-        coverLetterCount = coverLetterCount + 1
-    }
-    return coverLetterCount
+        if (application.cover_letter) {
+            coverLetterCount = coverLetterCount + 1
+        }
+        return coverLetterCount
     })
 
     console.log(coverLetterCount);
@@ -71,45 +70,8 @@ let coverLetterCount = 0;
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Typography sx={styles.text} variant='h4'>User Stats</Typography>
-            <TableContainer component={Paper} sx={{ ...reStyles.background }}>
-                <Table aria-label="User Info Table">
-                    <TableBody>
-                        <TableRow >
-                            <TableCell component="th" scope="row">
-                                Total Applications:
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="right">
-                                {data?.user.applications.length}
-                            </TableCell>
-                        </TableRow>
-                        <TableRow >
-                            <TableCell component="th" scope="row">
-                                Total Cover Letters:
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="right">
-                                {coverLetterCount}
-                            </TableCell>
-                        </TableRow>
-                        <TableRow >
-                            <TableCell component="th" scope="row">
-                                Most Recent Application:
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="right">
-                                {userStats.mostRecentApplication}
-                            </TableCell>
-                        </TableRow>
-                        <TableRow >
-                            <TableCell component="th" scope="row">
-                                Most Recent Interviewer Contact:
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="right">
-                                {userStats.mostRecentInterviewerContact}
-                            </TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            <Typography sx={styles.text} variant='h4'>Logout</Typography>
+            <Button variant='contained' color='secondary' fullWidth>Logout</Button>
         </Paper >
     )
 }
