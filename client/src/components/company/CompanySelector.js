@@ -2,8 +2,10 @@ import { useMutation } from '@apollo/client';
 import DeleteIcon from '@mui/icons-material/Delete';
 import WorkIcon from '@mui/icons-material/Work';
 import { Avatar, Box, Button, ListItem, ListItemAvatar, Typography } from "@mui/material";
-import { format } from 'date-fns';
+import { differenceInCalendarDays, format } from 'date-fns';
 import { DELETE_APPLICATION } from '../../utils/mutations';
+
+
 
 export const CompanySelector = ({ company, setSelectedCompany }) => {
 
@@ -23,9 +25,27 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
         }
     };
 
+    const getTimeColor = (days) => {
+        switch (true) {
+            //less then 30 days
+            case days > 30:
+                return 'secondary';
+            //less then 30 days
+            case days < 30:
+                console.log(days);
+                return 'warning';
+            //less then 10 days
+            case days < 10:
+                return 'success';
+            default:
+                return 'inherit';
+        }
+
+    }
+
     return (
         <ListItem sx={{ display: 'flex' }} >
-            <Button color='inherit' variant='contained'
+            <Button variant='contained'
                 sx={{
                     borderRadius: '10px 0 0 10px',
                     alignItems: 'flex-start',
@@ -33,6 +53,8 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
                     width: '100%',
                     justifyContent: 'space-between'
                 }}
+                color={getTimeColor(differenceInCalendarDays(new Date(), new Date(company.response)))}
+
                 onClick={() => setSelectedCompany({ ...company })}
             >
                 <Box sx={{ display: 'flex' }}>

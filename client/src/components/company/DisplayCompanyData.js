@@ -7,11 +7,6 @@ import { ADD_APPLICATION, UPDATE_APPLICATION } from "../../utils/mutations";
 
 export const DisplayCompanyData = (props) => {
     let tempcompany = {};
-    if (props.company === null) {
-        tempcompany = props.newCompany;
-    } else {
-        tempcompany = props.company;
-    };
     let { company, date_applied, contact_name, contact_phone, contact_email, contact_website, response, coverletter } = props.newCompany
 
     const [updateApplication] = useMutation(UPDATE_APPLICATION);
