@@ -6,11 +6,6 @@ import { reStyles } from "../../reusableStyles";
 import { ADD_APPLICATION, UPDATE_APPLICATION } from "../../utils/mutations";
 
 export const DisplayCompanyData = (props) => {
-    console.log(props.applications);
-    console.log('props.company------')
-    console.log(props.company);
-    console.log('props.newcompany---')
-    console.log(props.newCompany)
     let tempcompany = {};
     if (props.company === null) {
         tempcompany = props.newCompany;
@@ -46,14 +41,18 @@ export const DisplayCompanyData = (props) => {
                         cover_letter: formState.cover_letter,
                     }
                 });
-                console.log("--------------------");
+                console.log("----------ADD APP----------");
                 console.log(data.addApplication);
-                let tempVar = JSON.parse(JSON.stringify(props.applications));
+                let tempVar = JSON.parse(JSON.stringify(data.addApplication));
                 console.log(tempVar);
-                let tempArray = tempVar;
-                tempArray.push(data.addApplication);
+                let tempArray = props.applications;
+                console.log(tempArray);
+                console.log('temparray ^^')
+                tempArray = Object.assign([], tempArray, tempVar);
+                tempArray.push(tempVar);
                 console.log(tempArray);
                 props.setApplications(tempArray);
+                console.log(props.applications)
             } catch (e) {
                 console.error(e)
             }
