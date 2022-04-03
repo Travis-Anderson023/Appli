@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { Box, Divider, List, useMediaQuery } from "@mui/material";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
 import { reStyles } from "../reusableStyles";
@@ -16,15 +16,17 @@ export const Applications = () => {
     });
 
     const [applications, setApplications] = useState();
+    let [indexToChange, setIndexToChange] = useState(0);
 
-    const getApplications = async () => {
-        await data;
-        setApplications(data.user.applications);
-    }
+    useEffect(() => {
+        const getApplications = async () => {
+            await data;
+            setApplications(data.user.applications);
+        }
 
-    getApplications();
+        getApplications();
+    }, [data]);
 
-    console.log(applications);
 
     const [selectedCompany, setSelectedCompany] = useState({
         "company": "Add",
@@ -36,47 +38,7 @@ export const Applications = () => {
         "response": "Jan 1 2022",
         "cover_letter": "test"
     })
-    const companyArray = [
-        {
-            "company": "Google",
-            "date_applied": `March 31 2022`,
-            "contact_name": "Mary",
-            "contact_phone": "123-456-7890",
-            "contact_email": "google@email.com",
-            "contact_website": "google.ca",
-            "response": "March 30",
-            "coverletter": {
-                "createdAt": "March 29",
-                "text": "coverletter text"
-            }
-        },
-        {
-            "company": "Microsoftt",
-            "date_applied": "March 29",
-            "contact_name": "Tim",
-            "contact_phone": "123-456-7890",
-            "contact_email": "microsoft@email.com",
-            "contact_website": "microsoft.ca",
-            "response": null,
-            "coverletter": {
-                "createdAt": "March 29",
-                "text": "coverlettder text"
-            }
-        },
-        {
-            "company": "Amazon",
-            "date_applied": "March 7",
-            "contact_name": "Jane",
-            "contact_phone": "123-456-7890",
-            "contact_email": "amazon@email.com",
-            "contact_website": "amazon.ca",
-            "response": "March 31",
-            "coverletter": {
-                "createdAt": "March 29",
-                "text": "coverleddtter text"
-            }
-        }
-    ]
+
     const newCompany = {
         "company": "Add",
         "date_applied": "Jan 1 2022",
@@ -87,8 +49,6 @@ export const Applications = () => {
         "response": "Jan 1 2022",
         "cover_letter": "test"
     };
-
-    console.log(selectedCompany);
     return (
         <Box
             sx={{
@@ -106,15 +66,21 @@ export const Applications = () => {
                 <List sx={{ width: 'max-content', ...reStyles.background, }}>
                     <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                     {applications?.map((company, index) => {
+                        if (company._id === selectedCompany._id) {
+                            if (indexToChange !== index) {
+                                setIndexToChange(index);
+                            }
+                        }
                         return (
-                            <CompanySelector company={company} setSelectedCompany={setSelectedCompany} key={index} />
+
+                            < CompanySelector company={company} setSelectedCompany={setSelectedCompany} key={index} />
                         )
                     }
                     )}
                 </List>
             </Box>
             {useMediaQuery((theme) => theme.breakpoints.up('md')) ? <Divider orientation="vertical" flexItem sx={{ mt: '50px', mb: '50px' }} /> : <Divider flexItem />}
-            <DisplayCompanyData company={selectedCompany} newCompany={newCompany} />
+            <DisplayCompanyData applications={applications} indexToChange={indexToChange} company={selectedCompany} newCompany={newCompany} setApplications={setApplications} />
         </Box >
     )
 }

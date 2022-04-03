@@ -53,18 +53,18 @@ const resolvers = {
       return { token, user };
     },
     addApplication: async (parent, args, context) => {
-      // if (context.user) {
+      if (context.user) {
         const application = await Application.create(args);
 
-        // await User.findOneAndUpdate(
-        //   {_id: context.user._id},
-        //   { $addToSet: { applications: application._id}}
-        // )
+        await User.findOneAndUpdate(
+          {_id: context.user._id},
+          { $addToSet: { applications: application._id}}
+        )
         
         return application
 
-      // }
-      // throw new AuthenticationError('You need to be logged in!');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     updateApplication: async (parent, args, context) => {
       if (context.user) {

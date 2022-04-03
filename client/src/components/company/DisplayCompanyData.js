@@ -3,13 +3,9 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { format } from 'date-fns';
 import { useEffect, useState } from "react";
 import { reStyles } from "../../reusableStyles";
-import { UPDATE_APPLICATION } from "../../utils/mutations";
+import { ADD_APPLICATION, UPDATE_APPLICATION } from "../../utils/mutations";
 
 export const DisplayCompanyData = (props) => {
-    console.log('props.company------')
-    console.log(props.company);
-    console.log('props.newcompany---')
-    console.log(props.newCompany)
     let tempcompany = {};
     if (props.company === null) {
         tempcompany = props.newCompany;
@@ -19,29 +15,59 @@ export const DisplayCompanyData = (props) => {
     let { company, date_applied, contact_name, contact_phone, contact_email, contact_website, response, coverletter } = props.newCompany
 
     const [updateApplication] = useMutation(UPDATE_APPLICATION);
+    const [addApplication] = useMutation(ADD_APPLICATION);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
-        try {
-            console.log(props.company);
-            console.log(props.company._id);
-            const { data } = await updateApplication({
-                variables: {
-                    applicationId: props.company._id,
-                    company: formState.company,
-                    contact_name: formState.contact_name,
-                    contact_email: formState.contact_email,
-                    contact_phone: formState.contact_phone,
-                    contact_website: formState.contact_website,
-                    response: formState.response,
-                    date_applied: formState.date_applied,
-                    cover_letter: formState.cover_letter,
-                },
-            });
-            console.log(data);
-        } catch (e) {
-            console.error(e)
+
+        let value = document.getElementById('button').textContent;
+
+        if (value === 'Add Application') {
+            try {
+                const { data } = await addApplication({
+                    variables: {
+                        company: formState.company,
+                        contact_name: formState.contact_name,
+                        contact_email: formState.contact_email,
+                        contact_phone: formState.contact_phone,
+                        contact_website: formState.contact_website,
+                        response: formState.response,
+                        date_applied: formState.date_applied,
+                        cover_letter: formState.cover_letter,
+                    }
+                });
+                props.setApplications(prevstate => [...prevstate, data.addApplication]);
+                // TODO SEVAG THIS IS THE DELETE FUNCTION
+                //props.setApplications(applications => applications.filter((_, i) => i !== props.indexToChange));
+            } catch (e) {
+                console.error(e)
+            }
+        } else if (value === 'Submit Changes') {
+            try {
+                const { data } = await updateApplication({
+                    variables: {
+                        applicationId: props.company._id,
+                        company: formState.company,
+                        contact_name: formState.contact_name,
+                        contact_email: formState.contact_email,
+                        contact_phone: formState.contact_phone,
+                        contact_website: formState.contact_website,
+                        response: formState.response,
+                        date_applied: formState.date_applied,
+                        cover_letter: formState.cover_letter,
+                    }
+                });
+                let tempVar = JSON.parse(JSON.stringify(props.applications));
+                let tempArray = tempVar;
+                //tempArray[props.indexToChange] = data.updateApplication;
+                tempArray[props.indexToChange] = data.updateApplication;
+                props.setApplications(tempArray);
+                // props.setApplications(prev => ({...prev, 
+
+                // })
+            } catch (e) {
+                console.error(e)
+            }
         }
     };
 
@@ -99,7 +125,6 @@ export const DisplayCompanyData = (props) => {
             color: 'text.secondary',
         }
     }
-
     return (
         <Box
             sx={{
@@ -204,6 +229,7 @@ export const DisplayCompanyData = (props) => {
             />
             <Button
                 fullWidth
+                id="button"
                 variant="contained"
                 color="primary"
                 sx={{ mt: 3, mb: 2, ...style.formItem }}

@@ -13,12 +13,10 @@ export const CompanySelector = ({ company, setSelectedCompany }) => {
         event.preventDefault();
         const id = event.target.getAttribute('data-id');
         if (id) {
-            console.log("hi", id);
             try {
                 const { data } = await deleteApplication({
                     variables: { applicationId: id },
                 });
-                console.log(data.user);
             } catch (e) {
                 console.error(e)
             }
