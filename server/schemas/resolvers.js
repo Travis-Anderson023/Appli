@@ -11,16 +11,6 @@ const resolvers = {
       console.log(context.user)
       return User.findOne({username}).populate('applications');
     },
-    applications: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Application.find(params).populate('coverletter').sort({ createdAt: -1 });
-    },
-    application: async (parent, { applicationId }) => {
-      return Application.findOne({ _id: applicationId }).populate('coverletter');
-    },
-    // coverletter: async (parent, { coverletterId }) => {
-    //   return CoverLetter.findOne({ _id: coverletterId });
-    // },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate('resumes').populate('coverletters');
@@ -102,38 +92,8 @@ const resolvers = {
 
       }
       throw new AuthenticationError('You need to be logged in!');
-    },
-    // updateCoverLetter: async (parent, { coverletterId, text }, context) => {
-    //   // if (context.user) {
-    //     const coverLetter = await CoverLetter.findOneAndUpdate(
-    //       {_id: coverletterId},
-    //       { $set: {text:text}},
-    //       { runValidators: true, new: true }
-    //     );
-
-    //     console.log(text);
-    //     console.log(coverLetter);
-
-    //     return coverLetter;
-    //   // }
-    //   // throw new AuthenticationError('You need to be logged in!');
-    // },
-  },
-  // addCoverLetter: async (parent, { text }, context) => {
-    //   if (context.user) {
-    //     const coverLetter = await CoverLetter.create({
-    //       text,
-    //     });
-
-    //     await Application.findOneAndUpdate(
-    //       { _id: context.application._id },
-    //       { $addToSet: { coverletter: coverLetter._id } }
-    //     );
-
-    //     return coverLetter;
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
+    }
+  }
 };
 
 module.exports = resolvers;

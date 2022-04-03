@@ -71,15 +71,3 @@ export const DELETE_APPLICATION = gql`
     }
   }
 `;
-
-// export const ADD_COVERLETTER = gql`
-//   mutation addCoverLetter($text: String!) {
-//     addCoverLetter(text: $text) {
-//       coverletter {
-//         _id
-//         text
-//         createdAt
-//       }
-//     }
-//   }
-// `;

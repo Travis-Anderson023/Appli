@@ -47,7 +47,6 @@ export const CompanySelector = ({ company, newCompany, selectedCompany, setSelec
     };
 
     const getTimeColor = (days) => {
-        console.log(days);
         switch (true) {
             //greater than 30 days
             case days >= 30:
