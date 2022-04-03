@@ -32,8 +32,6 @@ export const DisplayCompanyData = (props) => {
                     }
                 });
                 props.setApplications(prevstate => [...prevstate, data.addApplication]);
-                // TODO SEVAG THIS IS THE DELETE FUNCTION
-                //props.setApplications(applications => applications.filter((_, i) => i !== props.indexToChange));
             } catch (e) {
                 console.error(e)
             }
@@ -54,12 +52,9 @@ export const DisplayCompanyData = (props) => {
                 });
                 let tempVar = JSON.parse(JSON.stringify(props.applications));
                 let tempArray = tempVar;
-                //tempArray[props.indexToChange] = data.updateApplication;
                 tempArray[props.indexToChange] = data.updateApplication;
                 props.setApplications(tempArray);
-                // props.setApplications(prev => ({...prev, 
-
-                // })
+                
             } catch (e) {
                 console.error(e)
             }
@@ -81,24 +76,29 @@ export const DisplayCompanyData = (props) => {
 
     const [formState, setFormState] = useState({
         company: company,
-        date_applied: format(new Date(date_applied), "yyyy-MM-dd"),
+        date_applied: date_applied,
+        // date_applied: format(new Date(date_applied), "yyyy-MM-dd"),
         contact_name: contact_name,
         contact_phone: contact_phone,
         contact_email: contact_email,
         contact_website: contact_website,
-        response: format(new Date(response), "yyyy-MM-dd"),
+        response: response,
         cover_letter: coverletter
     })
 
+    console.log(formState.date_applied);
+    console.log(date_applied);
+    
     useEffect(() => {
         setFormState(prevState => ({
             company: company,
-            date_applied: format(new Date(date_applied), "yyyy-MM-dd"),
+            date_applied: date_applied,
             contact_name: contact_name,
             contact_phone: contact_phone,
             contact_email: contact_email,
             contact_website: contact_website,
-            response: format(new Date(response), "yyyy-MM-dd"),
+            response: response,
+            // response: format(new Date(response), "yyyy-MM-dd"),
             cover_letter: coverletter
         }));
     }, [props.company]);
@@ -235,5 +235,3 @@ export const DisplayCompanyData = (props) => {
         </Box >
     )
 }
-
-// <a href={project.deployedLink !== null ? project.deployedLink : project.walkThrough} class="card-link btn btn-primary">{project.deployedLink !== null ? 'Deployed Application' : 'Walkthrough Video'}</a>

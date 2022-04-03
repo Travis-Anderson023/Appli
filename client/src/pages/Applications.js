@@ -16,6 +16,8 @@ export const Applications = () => {
         variables: { username }
     });
 
+    console.log(data);
+
     const [applications, setApplications] = useState();
     let [indexToChange, setIndexToChange] = useState(0);
 
@@ -63,7 +65,7 @@ export const Applications = () => {
             }
             }
         >
-            <Box sx={{ m: '50px', height: "25%", overflow: 'auto' }}>
+            <Box sx={{ m: '50px', height: ["25%","25%","80%","80%"], overflow: 'auto' }}>
                 <List sx={{ width: 'max-content', ...reStyles.background, }}>
                     <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                     {applications?.map((company, index) => {
@@ -75,7 +77,7 @@ export const Applications = () => {
                         }
                         return (
 
-                            < CompanySelector company={company} setSelectedCompany={setSelectedCompany} key={index} />
+                            < CompanySelector company={company} newCompany={newCompany} selectedCompany={selectedCompany} setSelectedCompany={setSelectedCompany} indexToChange={indexToChange} setIndexToChange={setIndexToChange} setApplications={setApplications} key={index} index={index}/>
                         )
                     }
                     )}
