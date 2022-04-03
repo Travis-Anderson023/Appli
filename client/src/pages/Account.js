@@ -1,9 +1,9 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
-import { reStyles } from "../reusableStyles";
-import { capitalize } from "../utils/helpers";
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from "../utils/queries";
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
+import { reStyles } from "../reusableStyles";
 import Auth from '../utils/auth';
+import { QUERY_USER } from "../utils/queries";
+import auth from '../utils/auth';
 
 export const Account = () => {
 
@@ -13,19 +13,6 @@ export const Account = () => {
     const { data } = useQuery(QUERY_USER, {
         variables: { username }
     });
-
-    console.log(data);
-
-    const UserData = {
-        "username": "johndoe",
-        "email": "email@email.com"
-    }
-    const userStats = {
-        totalApplications: 3,
-        totalCoverletters: 2,
-        mostRecentApplication: "March 31, 2022",
-        mostRecentInterviewerContact: "March 31, 2022"
-    }
 
     const styles = {
         text: {
@@ -50,7 +37,7 @@ export const Account = () => {
                                 Username:
                             </TableCell>
                             <TableCell style={{ width: 160 }} align="right">
-                                {capitalize(data.user.username)}
+                                {data?.user.username}
                             </TableCell>
                         </TableRow>
                         <TableRow >
@@ -58,7 +45,7 @@ export const Account = () => {
                                 Email:
                             </TableCell>
                             <TableCell style={{ width: 160 }} align="right">
-                                {data.user.email}
+                                {data?.user.email}
                             </TableCell>
                         </TableRow>
                         <TableRow >
@@ -66,45 +53,8 @@ export const Account = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Typography sx={styles.text} variant='h4'>User Stats</Typography>
-            <TableContainer component={Paper} sx={{ ...reStyles.background }}>
-                <Table aria-label="User Info Table">
-                    <TableBody>
-                        <TableRow >
-                            <TableCell component="th" scope="row">
-                                Total Applications:
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="right">
-                                {data.user.applications.length}
-                            </TableCell>
-                        </TableRow>
-                        <TableRow >
-                            <TableCell component="th" scope="row">
-                                Total Cover Letters:
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="right">
-                                {userStats.totalCoverletters}
-                            </TableCell>
-                        </TableRow>
-                        <TableRow >
-                            <TableCell component="th" scope="row">
-                                Most Recent Application:
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="right">
-                                {userStats.mostRecentApplication}
-                            </TableCell>
-                        </TableRow>
-                        <TableRow >
-                            <TableCell component="th" scope="row">
-                                Most Recent Interviewer Contact:
-                            </TableCell>
-                            <TableCell style={{ width: 160 }} align="right">
-                                {userStats.mostRecentInterviewerContact}
-                            </TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            <Typography sx={styles.text} variant='h4'>Logout</Typography>
+            <Button variant='contained' color='secondary' fullWidth onClick={() => auth.logout()}>Logout</Button>
         </Paper >
     )
 }

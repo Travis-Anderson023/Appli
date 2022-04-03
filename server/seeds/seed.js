@@ -31,7 +31,6 @@ db.once('open', async () => {
 
   console.log(users);
   console.log(applications);
-  // console.log(coverletter);
   console.log('all done!');
   process.exit(0);
 });
