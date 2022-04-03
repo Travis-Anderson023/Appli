@@ -36,10 +36,9 @@ export const DisplayCompanyData = (props) => {
                         cover_letter: formState.cover_letter,
                     }
                 });
-                let tempVar = JSON.parse(JSON.stringify(data.addApplication));
-                let tempArray = props.applications;
-                tempArray = Object.assign([], tempArray, tempVar);
-                props.setApplications(tempArray);
+                props.setApplications(prevstate => [...prevstate, data.addApplication]);
+                // TODO SEVAG THIS IS THE DELETE FUNCTION
+                //props.setApplications(applications => applications.filter((_, i) => i !== props.indexToChange));
             } catch (e) {
                 console.error(e)
             }
