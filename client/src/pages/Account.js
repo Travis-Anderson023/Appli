@@ -3,6 +3,7 @@ import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableRow, T
 import { reStyles } from "../reusableStyles";
 import Auth from '../utils/auth';
 import { QUERY_USER } from "../utils/queries";
+import auth from '../utils/auth';
 
 export const Account = () => {
 
@@ -71,7 +72,7 @@ export const Account = () => {
                 </Table>
             </TableContainer>
             <Typography sx={styles.text} variant='h4'>Logout</Typography>
-            <Button variant='contained' color='secondary' fullWidth>Logout</Button>
+            <Button variant='contained' color='secondary' fullWidth onClick={() => auth.logout()}>Logout</Button>
         </Paper >
     )
 }
