@@ -1,7 +1,20 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
 import { reStyles } from "../reusableStyles";
 import { capitalize } from "../utils/helpers";
+import { useQuery } from '@apollo/client';
+import { QUERY_USER } from "../utils/queries";
+import Auth from '../utils/auth';
+
 export const Account = () => {
+
+    const user = Auth.getProfile();
+    let username = user.data.username;
+
+    const { data } = useQuery(QUERY_USER, {
+        variables: { username }
+    });
+
+    console.log(data);
 
     const UserData = {
         "username": "johndoe",
@@ -37,7 +50,7 @@ export const Account = () => {
                                 Username:
                             </TableCell>
                             <TableCell style={{ width: 160 }} align="right">
-                                {capitalize(UserData.username)}
+                                {capitalize(data.user.username)}
                             </TableCell>
                         </TableRow>
                         <TableRow >
@@ -45,7 +58,7 @@ export const Account = () => {
                                 Email:
                             </TableCell>
                             <TableCell style={{ width: 160 }} align="right">
-                                {UserData.email}
+                                {data.user.email}
                             </TableCell>
                         </TableRow>
                         <TableRow >
@@ -62,7 +75,7 @@ export const Account = () => {
                                 Total Applications:
                             </TableCell>
                             <TableCell style={{ width: 160 }} align="right">
-                                {userStats.totalApplications}
+                                {data.user.applications.length}
                             </TableCell>
                         </TableRow>
                         <TableRow >

@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import { useNavigate } from 'react-router-dom';
 import logoTextBlack from '../../assets/logo-textBlack.png';
+import logoTextWhite from '../../assets/logo-textWhite.png';
 import auth from '../../utils/auth';
 
 export const Nav = (props) => {
@@ -34,17 +35,17 @@ export const Nav = (props) => {
                     >
                         <CardMedia
                             component='img'
-                            src={logoTextBlack}
+                            src={logoTextWhite}
                             sx={{
                                 height: '30px'
                             }}
                         />
                     </IconButton>
                     <MenuItem onClick={() => { navigate('/applications') }}>
-                        <Typography textAlign="center">Applications</Typography>
+                        <Typography textAlign="center" sx={{color:"white"}}>Applications</Typography>
                     </MenuItem>
                     <MenuItem onClick={() => { navigate('/account') }}>
-                        <Typography textAlign="center">Account</Typography>
+                        <Typography textAlign="center" sx={{color:"white"}}>Account</Typography>
                     </MenuItem>
                 </Toolbar>
                 <MenuItem onClick={() => auth.logout()}>
