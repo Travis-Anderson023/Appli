@@ -3,45 +3,61 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { format } from 'date-fns';
 import { useEffect, useState } from "react";
 import { reStyles } from "../../reusableStyles";
-import { UPDATE_APPLICATION } from "../../utils/mutations";
+import { ADD_APPLICATION, UPDATE_APPLICATION } from "../../utils/mutations";
 
 export const DisplayCompanyData = (props) => {
-    console.log('props.company------')
-    console.log(props.company);
-    console.log('props.newcompany---')
-    console.log(props.newCompany)
     let tempcompany = {};
-    if (props.company === null) {
-        tempcompany = props.newCompany;
-    } else {
-        tempcompany = props.company;
-    };
     let { company, date_applied, contact_name, contact_phone, contact_email, contact_website, response, coverletter } = props.newCompany
 
     const [updateApplication] = useMutation(UPDATE_APPLICATION);
+    const [addApplication] = useMutation(ADD_APPLICATION);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
-        try {
-            console.log(props.company);
-            console.log(props.company._id);
-            const { data } = await updateApplication({
-                variables: {
-                    applicationId: props.company._id,
-                    company: formState.company,
-                    contact_name: formState.contact_name,
-                    contact_email: formState.contact_email,
-                    contact_phone: formState.contact_phone,
-                    contact_website: formState.contact_website,
-                    response: formState.response,
-                    date_applied: formState.date_applied,
-                    cover_letter: formState.cover_letter,
-                },
-            });
-            console.log(data);
-        } catch (e) {
-            console.error(e)
+
+        let value = document.getElementById('button').textContent;
+
+        if (value === 'Add Application') {
+            try {
+                const { data } = await addApplication({
+                    variables: {
+                        company: formState.company,
+                        contact_name: formState.contact_name,
+                        contact_email: formState.contact_email,
+                        contact_phone: formState.contact_phone,
+                        contact_website: formState.contact_website,
+                        response: formState.response,
+                        date_applied: formState.date_applied,
+                        cover_letter: formState.cover_letter,
+                    }
+                });
+                props.setApplications(prevstate => [...prevstate, data.addApplication]);
+            } catch (e) {
+                console.error(e)
+            }
+        } else if (value === 'Submit Changes') {
+            try {
+                const { data } = await updateApplication({
+                    variables: {
+                        applicationId: props.company._id,
+                        company: formState.company,
+                        contact_name: formState.contact_name,
+                        contact_email: formState.contact_email,
+                        contact_phone: formState.contact_phone,
+                        contact_website: formState.contact_website,
+                        response: formState.response,
+                        date_applied: formState.date_applied,
+                        cover_letter: formState.cover_letter,
+                    }
+                });
+                let tempVar = JSON.parse(JSON.stringify(props.applications));
+                let tempArray = tempVar;
+                tempArray[props.indexToChange] = data.updateApplication;
+                props.setApplications(tempArray);
+                
+            } catch (e) {
+                console.error(e)
+            }
         }
     };
 
@@ -60,24 +76,29 @@ export const DisplayCompanyData = (props) => {
 
     const [formState, setFormState] = useState({
         company: company,
-        date_applied: format(new Date(date_applied), "yyyy-MM-dd"),
+        date_applied: date_applied,
+        // date_applied: format(new Date(date_applied), "yyyy-MM-dd"),
         contact_name: contact_name,
         contact_phone: contact_phone,
         contact_email: contact_email,
         contact_website: contact_website,
-        response: format(new Date(response), "yyyy-MM-dd"),
+        response: response,
         cover_letter: coverletter
     })
 
+    console.log(formState.date_applied);
+    console.log(date_applied);
+    
     useEffect(() => {
         setFormState(prevState => ({
             company: company,
-            date_applied: format(new Date(date_applied), "yyyy-MM-dd"),
+            date_applied: date_applied,
             contact_name: contact_name,
             contact_phone: contact_phone,
             contact_email: contact_email,
             contact_website: contact_website,
-            response: format(new Date(response), "yyyy-MM-dd"),
+            response: response,
+            // response: format(new Date(response), "yyyy-MM-dd"),
             cover_letter: coverletter
         }));
     }, [props.company]);
@@ -99,7 +120,6 @@ export const DisplayCompanyData = (props) => {
             color: 'text.secondary',
         }
     }
-
     return (
         <Box
             sx={{
@@ -204,6 +224,7 @@ export const DisplayCompanyData = (props) => {
             />
             <Button
                 fullWidth
+                id="button"
                 variant="contained"
                 color="primary"
                 sx={{ mt: 3, mb: 2, ...style.formItem }}
@@ -214,5 +235,3 @@ export const DisplayCompanyData = (props) => {
         </Box >
     )
 }
-
-// <a href={project.deployedLink !== null ? project.deployedLink : project.walkThrough} class="card-link btn btn-primary">{project.deployedLink !== null ? 'Deployed Application' : 'Walkthrough Video'}</a>
