@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import { Box, Divider, List, useMediaQuery } from "@mui/material";
 import { differenceInCalendarDays } from 'date-fns';
 import { useEffect, useState } from 'react';
+import { AddSelector } from '../components/company/AddSelector';
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
 import { reStyles } from "../reusableStyles";
@@ -65,9 +66,9 @@ export const Applications = () => {
             }
             }
         >
-            <Box sx={{ m: '50px', height: ["25%","25%","80%","80%"], overflow: 'auto' }}>
+            <Box sx={{ m: '50px', height: ["25%", "25%", "80%", "80%"], overflow: 'auto' }}>
                 <List sx={{ width: 'max-content', ...reStyles.background, }}>
-                    <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
+                    <AddSelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                     {applications?.map((company, index) => {
                         console.log(differenceInCalendarDays(new Date(), new Date(company.response)));
                         if (company._id === selectedCompany._id) {
@@ -77,7 +78,7 @@ export const Applications = () => {
                         }
                         return (
 
-                            < CompanySelector company={company} newCompany={newCompany} selectedCompany={selectedCompany} setSelectedCompany={setSelectedCompany} indexToChange={indexToChange} setIndexToChange={setIndexToChange} setApplications={setApplications} key={index} index={index}/>
+                            < CompanySelector company={company} newCompany={newCompany} selectedCompany={selectedCompany} setSelectedCompany={setSelectedCompany} indexToChange={indexToChange} setIndexToChange={setIndexToChange} setApplications={setApplications} key={index} index={index} />
                         )
                     }
                     )}
