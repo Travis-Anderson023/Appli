@@ -14,12 +14,17 @@ export const Account = () => {
         variables: { username }
     });
 
-    console.log(data);
+let coverLetterCount = 0;
 
-    const UserData = {
-        "username": "johndoe",
-        "email": "email@email.com"
+    data?.user.applications.map((application) => {
+    if(application.cover_letter) {
+        coverLetterCount = coverLetterCount + 1
     }
+    return coverLetterCount
+    })
+
+    console.log(coverLetterCount);
+
     const userStats = {
         totalApplications: 3,
         totalCoverletters: 2,
@@ -50,7 +55,7 @@ export const Account = () => {
                                 Username:
                             </TableCell>
                             <TableCell style={{ width: 160 }} align="right">
-                                {capitalize(data.user.username)}
+                                {data?.user.username}
                             </TableCell>
                         </TableRow>
                         <TableRow >
@@ -58,7 +63,7 @@ export const Account = () => {
                                 Email:
                             </TableCell>
                             <TableCell style={{ width: 160 }} align="right">
-                                {data.user.email}
+                                {data?.user.email}
                             </TableCell>
                         </TableRow>
                         <TableRow >
@@ -75,7 +80,7 @@ export const Account = () => {
                                 Total Applications:
                             </TableCell>
                             <TableCell style={{ width: 160 }} align="right">
-                                {data.user.applications.length}
+                                {data?.user.applications.length}
                             </TableCell>
                         </TableRow>
                         <TableRow >
@@ -83,7 +88,7 @@ export const Account = () => {
                                 Total Cover Letters:
                             </TableCell>
                             <TableCell style={{ width: 160 }} align="right">
-                                {userStats.totalCoverletters}
+                                {coverLetterCount}
                             </TableCell>
                         </TableRow>
                         <TableRow >

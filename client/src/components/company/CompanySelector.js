@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import DeleteIcon from '@mui/icons-material/Delete';
 import WorkIcon from '@mui/icons-material/Work';
-import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, ListItem, ListItemAvatar, Typography } from "@mui/material";
+import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, ListItem, ListItemAvatar, Typography } from "@mui/material";
 import { differenceInCalendarDays, format } from 'date-fns';
 import React, { useState } from 'react';
 import { DELETE_APPLICATION } from '../../utils/mutations';
@@ -22,11 +22,8 @@ export const CompanySelector = ({ company, newCompany, selectedCompany, setSelec
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const id = event.target.getAttribute('data-id');
-        console.log(selectedCompany._id);
-        console.log(company._id);
-        console.log(indexToChange);
 
-        if (company._id != selectedCompany._id) {
+        if (company._id !== selectedCompany._id) {
             setMessage("Please select the application you would like to delete prior to deleting!")
             setOpen(true);
         }
@@ -98,10 +95,10 @@ export const CompanySelector = ({ company, newCompany, selectedCompany, setSelec
                 aria-label="delete"
                 data-id={company._id}
                 onClick={(event) => { handleFormSubmit(event) }}
-                sx={{ height: '100%', borderRadius: '0 10px 10px 0' }}
+                sx={{ height: '36px', borderRadius: '0 10px 10px 0' }}
                 color='error'
                 variant='contained'>
-                <DeleteIcon />
+                Delete
             </Button>
             <Dialog
                 open={open}

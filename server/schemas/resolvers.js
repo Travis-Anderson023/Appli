@@ -8,7 +8,6 @@ const resolvers = {
       return User.find().select('-_password').populate('applications');
     },
     user: async (parent, { username }, context) => {
-      console.log(context.user)
       return User.findOne({username}).populate('applications');
     },
     me: async (parent, args, context) => {
@@ -58,7 +57,6 @@ const resolvers = {
     },
     updateApplication: async (parent, args, context) => {
       if (context.user) {
-        console.log(args);
         const application = await Application.findOneAndUpdate(
           {_id: args.applicationId},
           {$set: {
