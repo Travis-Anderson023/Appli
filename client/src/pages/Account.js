@@ -14,8 +14,6 @@ export const Account = () => {
         mostRecentInterviewerContact: "March 31, 2022"
     }
 
-
-
     const styles = {
         text: {
             margin: '10px',
