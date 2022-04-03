@@ -39,7 +39,6 @@ export const SignUp = (props) => {
     // submit form
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
 
         if (!formState.password || !formState.confirm_password || !formState.email || !formState.username) {
             setMessage("One or more field needs to be filled")
