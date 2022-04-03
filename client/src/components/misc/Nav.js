@@ -2,7 +2,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { BottomNavigation, BottomNavigationAction, CardMedia, MenuItem, TextField, Typography } from '@mui/material';
+import { BottomNavigation, BottomNavigationAction, CardMedia, MenuItem, Typography } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
@@ -46,15 +46,6 @@ export const Nav = (props) => {
                     <MenuItem onClick={() => { navigate('/account') }}>
                         <Typography textAlign="center">Account</Typography>
                     </MenuItem>
-                    {window.location.pathname === '/applications' ? <TextField
-                        label="Search"
-                        id="filled-size-small"
-                        placeholder='Search for an application'
-                        variant="filled"
-                        size="small"
-                        onChange={(e) => props.setAppFilter(e.target.value)}
-                    /> : undefined}
-
                 </Toolbar>
                 <MenuItem onClick={() => auth.logout()}>
                     <Typography textAlign="center">Logout</Typography>

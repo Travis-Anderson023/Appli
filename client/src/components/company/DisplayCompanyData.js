@@ -157,6 +157,7 @@ export const DisplayCompanyData = (props) => {
                 overflow: 'auto',
                 overflowX: 'hidden',
                 width: ['fit-content', '80%'],
+                textAlign: 'center'
             }}
         >
 
@@ -231,7 +232,7 @@ export const DisplayCompanyData = (props) => {
                 multiline
                 value={formState.response}
                 onChange={(e) => setFormState(prevstate => ({ ...prevstate, response: e.target.value }))}
-                sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
+                sx={{ ...style.formItem }}
                 InputLabelProps={{ shrink: true }}
             />
             <Typography sx={{ ...style.formTypography }} variant='h4'>Cover Letter</Typography>
@@ -242,7 +243,7 @@ export const DisplayCompanyData = (props) => {
                 rows={8}
                 value={formState.cover_letter}
                 onChange={(e) => setFormState(prevstate => ({ ...prevstate, cover_letter: e.target.value }))}
-                sx={{ ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
+                sx={{ ...style.formItem }}
                 InputLabelProps={{ shrink: true }}
             />
             <Button
@@ -250,7 +251,7 @@ export const DisplayCompanyData = (props) => {
                 id="button"
                 variant="contained"
                 color="primary"
-                sx={{ mt: 3, mb: 2, ...style.formItem, ml: ['20px', '20px', '20px', '10px'] }}
+                sx={{ mt: 3, mb: 2, ...style.formItem }}
                 onClick={(event) => handleFormSubmit(event)}
             >
                 {props.company.company == 'Add' ? 'Add Application' : 'Submit Changes'}
