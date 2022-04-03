@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { Box, Divider, List, useMediaQuery } from "@mui/material";
+import { differenceInCalendarDays } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { CompanySelector } from "../components/company/CompanySelector";
 import { DisplayCompanyData } from "../components/company/DisplayCompanyData";
@@ -64,10 +65,11 @@ export const Applications = () => {
             }
             }
         >
-            <Box sx={{ m: '50px', height: "25%", overflow: 'auto' }}>
+            <Box sx={{ m: '50px', height: ["25%","25%","80%","80%"], overflow: 'auto' }}>
                 <List sx={{ width: 'max-content', ...reStyles.background, }}>
                     <CompanySelector company={newCompany} setSelectedCompany={setSelectedCompany} />
                     {applications?.map((company, index) => {
+                        console.log(differenceInCalendarDays(new Date(), new Date(company.response)));
                         if (company._id === selectedCompany._id) {
                             if (indexToChange !== index) {
                                 setIndexToChange(index);
