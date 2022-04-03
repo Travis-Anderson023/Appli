@@ -1,12 +1,11 @@
 import { useMutation } from '@apollo/client';
-import DeleteIcon from '@mui/icons-material/Delete';
 import WorkIcon from '@mui/icons-material/Work';
 import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, ListItem, ListItemAvatar, Typography } from "@mui/material";
-import { differenceInCalendarDays, format } from 'date-fns';
+import { format } from 'date-fns';
 import React, { useState } from 'react';
 import { DELETE_APPLICATION } from '../../utils/mutations';
 
-export const CompanySelector = ({ company, newCompany, selectedCompany, setSelectedCompany, indexToChange, setApplications, index }) => {
+export const AddSelector = ({ company, newCompany, selectedCompany, setSelectedCompany, indexToChange, setApplications, index }) => {
 
     const [deleteApplication] = useMutation(DELETE_APPLICATION);
 
@@ -57,7 +56,7 @@ export const CompanySelector = ({ company, newCompany, selectedCompany, setSelec
                 return 'warning';
             //less than 10 days
             case days <= 10:
-                return 'primary';
+                return 'success';
             default:
                 return 'inherit';
         }
@@ -68,13 +67,13 @@ export const CompanySelector = ({ company, newCompany, selectedCompany, setSelec
         <ListItem sx={{ display: 'flex' }} >
             <Button variant='contained'
                 sx={{
-                    borderRadius: '10px 0 0 10px',
+                    borderRadius: '10px',
                     alignItems: 'flex-start',
-                    height: '36px',
+                    height: '100%',
                     width: '100%',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
                 }}
-                color={getTimeColor(differenceInCalendarDays(new Date(), new Date(company.response)))}
+                color='inherit'
 
                 onClick={() => setSelectedCompany({ ...company })}
             >
@@ -93,16 +92,6 @@ export const CompanySelector = ({ company, newCompany, selectedCompany, setSelec
                     </Typography>
                 </Box>
                 <Typography sx={{ ml: '10px' }}>{format(new Date(company.date_applied), 'MM/dd')}</Typography>
-            </Button>
-            <Button
-                edge="end"
-                aria-label="delete"
-                data-id={company._id}
-                onClick={(event) => { handleFormSubmit(event) }}
-                sx={{ height: '100%', borderRadius: '0 10px 10px 0' }}
-                color='error'
-                variant='contained'>
-                <DeleteIcon />
             </Button>
             <Dialog
                 open={open}
