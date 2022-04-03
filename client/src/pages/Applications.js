@@ -15,6 +15,8 @@ export const Applications = () => {
         variables: { username }
     });
 
+    console.log(data);
+
     const [applications, setApplications] = useState();
     let [indexToChange, setIndexToChange] = useState(0);
 
