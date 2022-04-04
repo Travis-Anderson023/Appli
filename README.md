@@ -53,7 +53,7 @@ Appli's goals were achieved using the following technologies:
 ## Usage
 This application is currently deployed on Heroku! 
 
-Check us out [HERE]()
+Check us out [HERE](https://appli-official.herokuapp.com/)
 ```
 User Manual: 
     1. You will be required to create an account. 
