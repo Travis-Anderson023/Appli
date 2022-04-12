@@ -1,4 +1,4 @@
-# Appli: Social Network API
+# Appli
 ![logo](./Assets/images/logo-icon.png)
 
 ## License
