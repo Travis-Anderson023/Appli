@@ -1,28 +1,29 @@
 import {
-  ApolloClient, ApolloProvider,
-  createHttpLink, InMemoryCache
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import { createTheme, ThemeProvider } from '@mui/material';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { App } from './App';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-
+  ApolloClient,
+  ApolloProvider,
+  createHttpLink,
+  InMemoryCache,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { createTheme, ThemeProvider } from "@mui/material";
+import React from "react";
+import ReactDOM from "react-dom";
+import { App } from "./App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: `${process.env.PUBLIC_URL}/graphql`,
 });
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -35,20 +36,20 @@ const client = new ApolloClient({
 const theme = createTheme({
   palette: {
     primary: {
-      light: '#dfe3ee',
-      main: '#8b9dc3',
-      dark: '#3b5998'
+      light: "#dfe3ee",
+      main: "#8b9dc3",
+      dark: "#3b5998",
     },
     secondary: {
-      main: '#f44336'
+      main: "#f44336",
     },
     text: {
-      primary: '#212121',
+      primary: "#212121",
     },
     background: {
-      default: '#fff',
-      paper: '#dfe3ee',
-    }
+      default: "#fff",
+      paper: "#dfe3ee",
+    },
   },
   spacing: [0, 4, 8, 16, 24, 32, 40, 48, 56, 64],
   typography: {
@@ -59,8 +60,7 @@ const theme = createTheme({
       fontFamily: "Oxygen, cursive",
     },
   },
-},
-);
+});
 
 ReactDOM.render(
   <React.StrictMode>
@@ -70,7 +70,7 @@ ReactDOM.render(
       </ThemeProvider>
     </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
